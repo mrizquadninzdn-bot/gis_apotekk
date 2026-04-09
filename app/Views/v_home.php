@@ -8,17 +8,17 @@
 
 <script>
 var peta1 = L.tileLayer(
-'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
+'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
 {
-    attribution: 'Map data © OpenStreetMap contributors, Imagery © Mapbox',
-    id: 'mapbox/streets-v11'
+ attribution:'© OpenStreetMap'
+});
 });
 
 var peta2 = L.tileLayer(
-'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
+var peta1 = L.tileLayer(
+'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
 {
-    attribution: 'Map data © OpenStreetMap contributors, Imagery © Mapbox',
-    id: 'mapbox/satellite-v9'
+ attribution:'© OpenStreetMap'
 });
 
 var peta3 = L.tileLayer(
