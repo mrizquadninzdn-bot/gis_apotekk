@@ -2,44 +2,49 @@
 
 namespace App\Controllers;
 
-use App\Models\modeSetting;
+// Perhatikan huruf besar kecilnya (Case Sensitive)
+use App\Models\ModelSetting; 
 
 class Admin extends BaseController
 {
+    // Deklarasikan variabel agar bisa dipakai di semua function
+    protected $ModelSetting;
 
-public function __construct()
-{
-    $this->ModelSetting = new ModelSetting();
-}
+    public function __construct()
+    {
+        // Pastikan nama class Model sesuai dengan file di App/Models/ModelSetting.php
+        $this->ModelSetting = new ModelSetting(); 
+    }
+
     public function index()
     {
-        $data =[
+        $data = [
             'judul' => 'Dashboard',
-            'page' => 'v_dashboard',
+            'page'  => 'v_dashboard',
         ];
         return view('v_template_back_end', $data);
     }
 
     public function Setting()
     {
-        $data =[
+        $data = [
             'judul' => 'Setting',
-            'page' => 'v_setting',
-            'web' => $this->ModelSetting->DataWeb(),
+            'page'  => 'v_setting',
+            'web'   => $this->ModelSetting->DataWeb(),
         ];
         return view('v_template_back_end', $data);
     }
 
     public function UpdateSetting()
-    {
-        $data = [
-            'id' => 1,
-            'nama_web' => $this->request->getPost('nama_web'),
-            'coordinat_wilayah' => $this->request->getPost('coordinat_wilayah'),
-            'zoom_view' => $this->request->getPost('zoom_view'),
-        ];
-        $this->ModelSetting->UpdateData($data);
-        session()->setFlasedata('pesan', 'Settingan Web Telah DiUpdate !!!');
-        return redirect()->to('Admin/Setting');
-    }
+{
+    $data = [
+        'id'             => 1,
+        'nama_web'       => $this->request->getPost('nama_web'),
+        'coordinat_kota' => $this->request->getPost('coordinat_kota'), // Sesuaikan nama kolom
+        'zoom_view'      => $this->request->getPost('zoom_view'),
+    ];
+    $this->ModelSetting->UpdateData($data);
+    session()->setFlashdata('pesan', 'Settingan Web Telah DiUpdate !!!');
+    return redirect()->to('Admin/Setting');
+}
 }
