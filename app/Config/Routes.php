@@ -12,6 +12,8 @@ $routes->get('/', 'Home::index');
 // Rute Admin (Dibuat dua variasi agar A besar atau a kecil tetap jalan)
 $routes->get('admin', 'Admin::index');
 $routes->get('Admin', 'Admin::index');
+$routes->get('Wilayah', 'Wilayah::index');
+$routes->get('wilayah', 'Wilayah::index');
 
 // Rute Setting
 $routes->get('admin/setting', 'Admin::Setting');

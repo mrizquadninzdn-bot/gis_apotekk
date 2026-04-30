@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 // Perhatikan huruf besar kecilnya (Case Sensitive)
-use App\Models\ModelSetting; 
+use App\Models\ModelSetting;
 
 class Admin extends BaseController
 {
@@ -13,7 +13,7 @@ class Admin extends BaseController
     public function __construct()
     {
         // Pastikan nama class Model sesuai dengan file di App/Models/ModelSetting.php
-        $this->ModelSetting = new ModelSetting(); 
+        $this->ModelSetting = new ModelSetting();
     }
 
     public function index()
