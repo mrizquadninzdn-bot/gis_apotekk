@@ -29,7 +29,10 @@
                         <td><?= $no++ ?></td>
                         <td><?= $value['nama_wilayah'] ?></td>
                         <td style="background-color: <?= $value['warna'] ?> ;"></td>
-                        <td></td>
+                        <td class="text-center">
+                            <a href="<?= base_url('Wilayah/Edit/'. $value['id_wilayah']) ?>" class="btn btn-sm btn-warning btn-flat"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="<?= base_url('Wilayah/Delete/'. $value['id_wilayah']) ?>" onclick="return confirm('Yakin Hapus Data..?')" class="btn btn-sm btn-danger btn-flat"><i class="fas fa-trash"></i></a>
+                          </td>
                        </tr>
                    <?php } ?>
                  </tbody>
