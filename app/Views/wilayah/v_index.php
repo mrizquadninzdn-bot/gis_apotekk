@@ -77,7 +77,7 @@
   
 
     const map = L.map('map', {
-	    center: [<?= $web['koordinat_wilayah'] ?>],
+	    center: [<?= $web['coordinat_kota'] ?>],
 	    zoom: <?= $web['zoom_view'] ?>,
 	    layers: [peta3]
 });
