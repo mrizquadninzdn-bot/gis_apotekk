@@ -18,6 +18,8 @@ $routes->post('Wilayah/InsertData', 'Wilayah::InsertData');
 $routes->get('Wilayah/Edit/(:num)', 'Wilayah::Edit/$1');
 $routes->post('Wilayah/UpdateData/(:num)', 'Wilayah::UpdateData/$1');
 $routes->get('Wilayah/Delete/(:num)', 'Wilayah::Delete/$1');
+$routes->get('Jenjang', 'Jenjang::index');
+$routes->post('Jenjang/UpdateData/(:num)', 'Jenjang::UpdateData/$1');
 
 // Rute Setting
 $routes->get('admin/setting', 'Admin::Setting');
