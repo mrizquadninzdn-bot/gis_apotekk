@@ -16,11 +16,7 @@ class App extends BaseConfig
      *
      * E.g., http://example.com/
      */
-<<<<<<< HEAD
     public $baseURL = 'http://localhost:8080/gis_apotekk/public/';
-=======
-    public $baseURL = '';
->>>>>>> d41fd51d06db1f3b141f193b2dab076305dc535e
 
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.
@@ -204,3 +200,4 @@ class App extends BaseConfig
      */
     public $CSPEnabled = false;
 }
+
