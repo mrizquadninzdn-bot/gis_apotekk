@@ -139,6 +139,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="<?= base_url('Jenjang') ?>" class="nav-link">
+              <i class="nav-icon fas fa-swimming-pool"></i>
+              <p>
+                Jenjang
+              </p>
+            </a>
+          </li>
 
           <li class="nav-item menu-open">
             <a href="#" class="nav-link active">

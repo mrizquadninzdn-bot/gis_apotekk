@@ -89,8 +89,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
        
         
         <li class="nav-item">
-          <a class="nav-link" href="#" 
-            <i class="fas fa-sign-in-alt"></i> Login
+          <a class="nav-link" href="<?= base_url('Admin') ?>" >
+             <i class="fas fa-sign-in-alt"></i> Login
           </a>
         </li>
       </ul>

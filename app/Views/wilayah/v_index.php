@@ -29,7 +29,10 @@
                         <td><?= $no++ ?></td>
                         <td><?= $value['nama_wilayah'] ?></td>
                         <td style="background-color: <?= $value['warna'] ?> ;"></td>
-                        <td></td>
+                        <td class="text-center">
+                            <a href="<?= base_url('Wilayah/Edit/'. $value['id_wilayah']) ?>" class="btn btn-sm btn-warning btn-flat"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="<?= base_url('Wilayah/Delete/'. $value['id_wilayah']) ?>" onclick="return confirm('Yakin Hapus Data..?')" class="btn btn-sm btn-danger btn-flat"><i class="fas fa-trash"></i></a>
+                          </td>
                        </tr>
                    <?php } ?>
                  </tbody>
@@ -40,7 +43,65 @@
             </div>
             <!-- /.card -->
           </div>
+          <div class="col-md-12">
+            <div id="map" style="width: 100%; height: 800px;"></div>
+          </div>
+<script>
+    var peta1 = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id: 'mapbox/streets-v11'
+	});
 
+    var peta2 = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id: 'mapbox/satellite-v9'
+	});
+
+
+    var peta3 = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+	});
+
+    var peta4 = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id: 'mapbox/dark-v10'
+	});
+
+      
+  
+
+    const map = L.map('map', {
+	    center: [<?= $web['coordinat_kota'] ?>],
+	    zoom: <?= $web['zoom_view'] ?>,
+	    layers: [peta3]
+});
+
+    const baseMaps = {
+	    'OpenStreetMap': peta1,
+	    'satelite': peta2,
+        'streets': peta3,
+        'night': peta4
+    };
+
+    var layerControl = L.control.layers(baseMaps).addTo(map);
+
+    <?php foreach ($wilayah as $key => $value) { ?>
+        L.geoJSON(<?= $value['geojson'] ?>, {
+            fillColor: '<?= $value['warna'] ?>',
+            fillOpacity: 0.7,
+        })
+        .bindPopup("<b><?= $value['nama_wilayah'] ?></b>")
+        .addTo(map);
+    <?php } ?>
+
+
+</script>
 <script>
   $(function () {
     $("#example1").DataTable({
