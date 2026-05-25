@@ -37,8 +37,8 @@ var peta4 = L.tileLayer(
 
 // tampilkan map
 const map = L.map('map',{
- center:[-7.239401858334516,108.98264289428558],
- zoom:13,
+ center:[<?= $web['coordinat_kota'] ?>],
+ zoom: [<?= $web['zoom_view'] ?>],
  layers:[peta1]
 });
 
@@ -56,5 +56,13 @@ L.control.layers(baseMaps).addTo(map);
 L.marker([-7.239401858334516,108.98264289428558])
 .addTo(map)
 .bindPopup("Lokasi Apotek");
+<?php foreach ($wilayah as $key => $value) { ?>
+        L.geoJSON(<?= $value['geojson'] ?>, {
+            fillColor: '<?= $value['warna'] ?>',
+            fillOpacity: 0.7,
+        })
+        .bindPopup("<b><?= $value['nama_wilayah'] ?></b>")
+        .addTo(map);
+    <?php } ?>
 
 </script>

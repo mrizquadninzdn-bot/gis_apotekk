@@ -21,6 +21,7 @@ $routes->get('Wilayah/Delete/(:num)', 'Wilayah::Delete/$1');
 $routes->get('Jenjang', 'Jenjang::index');
 $routes->post('Jenjang/UpdateData/(:num)', 'Jenjang::UpdateData/$1');
 
+
 // Rute Setting
 $routes->get('admin/setting', 'Admin::Setting');
 $routes->get('Admin/Setting', 'Admin::Setting');
@@ -29,3 +30,4 @@ $routes->get('Admin/Setting', 'Admin::Setting');
 
 // Tambahkan baris ini untuk memproses simpan data (POST)
 $routes->post('Admin/UpdateSetting', 'Admin::UpdateSetting');
+$routes->get('apotek', 'Apotek::index');$routes->get('Apotek/Input', 'Apotek::Input');
