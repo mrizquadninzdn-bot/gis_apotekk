@@ -37,4 +37,30 @@ class ModelApotek extends Model
         ->where('id_apotek', $data['id_apotek'])
         ->delete($data);
     }
+
+    //Provinsi
+    Public function allProvinsi()
+    {
+        return $this->db->table('tbl_provinsi')
+            ->orderBy('id_provinsi', 'ASC')
+            ->get()->getResultArray();
+    }
+
+    Public function allKabupaten($id_provinsi)
+    {
+        return $this->db->table('tbl_kabupaten')
+            ->where('id_provinsi', $id_provinsi)
+            ->orderBy('id_provinsi', 'ASC')
+            ->get()
+            ->getResultArray();
+    }
+
+    public function allKecamatan($id_kabupaten)
+    {
+        return $this->db->table('tbl_kecamatan') 
+                        ->where('id_kabupaten', $id_kabupaten) // <-- Sesuaikan nama kolom ini dengan phpMyAdmin
+                        ->orderBy('nama_kecamatan', 'ASC')
+                        ->get()
+                        ->getResultArray();
+    }
 }

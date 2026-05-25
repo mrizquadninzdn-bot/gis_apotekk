@@ -30,4 +30,7 @@ $routes->get('Admin/Setting', 'Admin::Setting');
 
 // Tambahkan baris ini untuk memproses simpan data (POST)
 $routes->post('Admin/UpdateSetting', 'Admin::UpdateSetting');
-$routes->get('apotek', 'Apotek::index');$routes->get('Apotek/Input', 'Apotek::Input');
+$routes->get('apotek', 'Apotek::index');
+$routes->get('Apotek/Input', 'Apotek::Input');
+$routes->post('Apotek/Kabupaten', 'Apotek::Kabupaten');
+$routes->post('Apotek/Kecamatan', 'Apotek::Kecamatan');
