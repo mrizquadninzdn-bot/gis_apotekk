@@ -1,0 +1,180 @@
+WARNING - 2026-06-20 07:28:11 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$ModelSetting is deprecated in APPPATH\Controllers\Home.php on line 13.
+ 1 SYSTEMPATH\CodeIgniter.php(921): App\Controllers\Home->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-06-20 07:28:11 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$ModelWilayah is deprecated in APPPATH\Controllers\Home.php on line 14.
+ 1 SYSTEMPATH\CodeIgniter.php(921): App\Controllers\Home->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-06-20 07:28:11 --> Error connecting to the database: mysqli_sql_exception: Unknown database 'db_gis_apotek' in C:\laragon\www\gis_apotekk\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\gis_apotekk\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'db_gis_apotek', 3306, '', 0)
+#1 C:\laragon\www\gis_apotekk\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\gis_apotekk\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\gis_apotekk\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\gis_apotekk\app\Models\ModelSetting.php(14): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\gis_apotekk\app\Controllers\Home.php(22): App\Models\ModelSetting->DataWeb()
+#6 C:\laragon\www\gis_apotekk\system\CodeIgniter.php(951): App\Controllers\Home->index()
+#7 C:\laragon\www\gis_apotekk\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\laragon\www\gis_apotekk\system\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\gis_apotekk\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\gis_apotekk\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\laragon\www\gis_apotekk\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown database 'db_gis_apotek' in C:\laragon\www\gis_apotekk\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\laragon\www\gis_apotekk\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\gis_apotekk\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\gis_apotekk\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\laragon\www\gis_apotekk\app\Models\ModelSetting.php(14): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\gis_apotekk\app\Controllers\Home.php(22): App\Models\ModelSetting->DataWeb()
+#5 C:\laragon\www\gis_apotekk\system\CodeIgniter.php(951): App\Controllers\Home->index()
+#6 C:\laragon\www\gis_apotekk\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\laragon\www\gis_apotekk\system\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\laragon\www\gis_apotekk\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#9 C:\laragon\www\gis_apotekk\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\laragon\www\gis_apotekk\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2026-06-20 07:28:11 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Unknown database 'db_gis_apotek'
+[Method: GET, Route: /]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tbl_setting`
+WHERE `id` = :id:', [...], false)
+ 3 APPPATH\Models\ModelSetting.php(14): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH\Controllers\Home.php(22): App\Models\ModelSetting->DataWeb()
+ 5 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Home->index()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 7 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-06-20 07:29:57 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$ModelSetting is deprecated in APPPATH\Controllers\Home.php on line 13.
+ 1 SYSTEMPATH\CodeIgniter.php(921): App\Controllers\Home->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-06-20 07:29:57 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$ModelWilayah is deprecated in APPPATH\Controllers\Home.php on line 14.
+ 1 SYSTEMPATH\CodeIgniter.php(921): App\Controllers\Home->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-06-20 07:29:57 --> Error connecting to the database: mysqli_sql_exception: Unknown database 'db_gis_apotek' in C:\laragon\www\gis_apotekk\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\gis_apotekk\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'db_gis_apotek', 3306, '', 0)
+#1 C:\laragon\www\gis_apotekk\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\gis_apotekk\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\gis_apotekk\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\gis_apotekk\app\Models\ModelSetting.php(14): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\gis_apotekk\app\Controllers\Home.php(22): App\Models\ModelSetting->DataWeb()
+#6 C:\laragon\www\gis_apotekk\system\CodeIgniter.php(951): App\Controllers\Home->index()
+#7 C:\laragon\www\gis_apotekk\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\laragon\www\gis_apotekk\system\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\gis_apotekk\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\gis_apotekk\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\laragon\www\gis_apotekk\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown database 'db_gis_apotek' in C:\laragon\www\gis_apotekk\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\laragon\www\gis_apotekk\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\gis_apotekk\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\gis_apotekk\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\laragon\www\gis_apotekk\app\Models\ModelSetting.php(14): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\gis_apotekk\app\Controllers\Home.php(22): App\Models\ModelSetting->DataWeb()
+#5 C:\laragon\www\gis_apotekk\system\CodeIgniter.php(951): App\Controllers\Home->index()
+#6 C:\laragon\www\gis_apotekk\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\laragon\www\gis_apotekk\system\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\laragon\www\gis_apotekk\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#9 C:\laragon\www\gis_apotekk\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\laragon\www\gis_apotekk\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2026-06-20 07:29:57 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Unknown database 'db_gis_apotek'
+[Method: GET, Route: /]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tbl_setting`
+WHERE `id` = :id:', [...], false)
+ 3 APPPATH\Models\ModelSetting.php(14): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH\Controllers\Home.php(22): App\Models\ModelSetting->DataWeb()
+ 5 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Home->index()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 7 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-06-20 07:30:43 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$ModelSetting is deprecated in APPPATH\Controllers\Home.php on line 13.
+ 1 SYSTEMPATH\CodeIgniter.php(921): App\Controllers\Home->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-06-20 07:30:43 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$ModelWilayah is deprecated in APPPATH\Controllers\Home.php on line 14.
+ 1 SYSTEMPATH\CodeIgniter.php(921): App\Controllers\Home->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-06-20 07:30:43 --> Error connecting to the database: mysqli_sql_exception: Unknown database 'db_gis_apotek' in C:\laragon\www\gis_apotekk\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\gis_apotekk\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'db_gis_apotek', 3306, '', 0)
+#1 C:\laragon\www\gis_apotekk\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\gis_apotekk\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\gis_apotekk\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\gis_apotekk\app\Models\ModelSetting.php(14): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\gis_apotekk\app\Controllers\Home.php(22): App\Models\ModelSetting->DataWeb()
+#6 C:\laragon\www\gis_apotekk\system\CodeIgniter.php(951): App\Controllers\Home->index()
+#7 C:\laragon\www\gis_apotekk\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\laragon\www\gis_apotekk\system\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\gis_apotekk\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\gis_apotekk\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\laragon\www\gis_apotekk\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown database 'db_gis_apotek' in C:\laragon\www\gis_apotekk\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\laragon\www\gis_apotekk\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\gis_apotekk\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\gis_apotekk\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\laragon\www\gis_apotekk\app\Models\ModelSetting.php(14): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\gis_apotekk\app\Controllers\Home.php(22): App\Models\ModelSetting->DataWeb()
+#5 C:\laragon\www\gis_apotekk\system\CodeIgniter.php(951): App\Controllers\Home->index()
+#6 C:\laragon\www\gis_apotekk\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\laragon\www\gis_apotekk\system\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\laragon\www\gis_apotekk\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#9 C:\laragon\www\gis_apotekk\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\laragon\www\gis_apotekk\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2026-06-20 07:30:43 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Unknown database 'db_gis_apotek'
+[Method: GET, Route: /]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tbl_setting`
+WHERE `id` = :id:', [...], false)
+ 3 APPPATH\Models\ModelSetting.php(14): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH\Controllers\Home.php(22): App\Models\ModelSetting->DataWeb()
+ 5 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\Home->index()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 7 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
