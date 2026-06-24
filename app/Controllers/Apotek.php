@@ -46,6 +46,47 @@ class Apotek extends BaseController
         ];
         return view('v_template_back_end', $data);
     }
+
+    public function InsertData()
+    {
+        if ($this->validate([
+            'nama_sekolah' => [
+                'label' => 'Nama Sekolah',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} Wajib Diisi !!'
+                ]
+                ],
+                'geojson' => [
+                'label' => 'Data GeoJSON',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} Wajib Diisi !!'
+                ]
+                ],
+                'warna' => [
+                'label' => 'Warna',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} Wajib Diisi !!'
+                ]
+                ],
+            ])) {
+            //jika validasi berhasil
+            $data =[
+                'nama_wilayah' => $this->request->getPost('nama_wilayah'),
+                'warna' => $this->request->getPost('warna'),
+                'geojson' => $this->request->getPost('geojson'),
+            ];
+            $this->ModelWilayah->InsertData($data);
+            session()->setFlashdata('insert', 'Data Berhasil Ditambahkan');
+            return redirect()->to('Wilayah');
+        }else {
+            //jika validasi gagal
+            session()->setFlashData('errors', \Config\Services::validation()->getErrors());
+            return redirect()->to('Wilayah/Input')->withInput();
+        }
+    }
     //Kabupaten, Kecamatan
     public function Kabupaten()
     {

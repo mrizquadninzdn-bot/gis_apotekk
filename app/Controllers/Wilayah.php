@@ -48,20 +48,64 @@ class Wilayah extends BaseController
                     'required' => '{field} Wajib Diisi !!'
                 ]
                 ],
-                'geojson' => [
-                'label' => 'Data GeoJSON',
+                'status' => [
+                'label' => 'Status',
                 'rules' => 'required',
                 'errors' => [
                     'required' => '{field} Wajib Diisi !!'
                 ]
                 ],
-                'warna' => [
-                'label' => 'Warna',
+                'coordinat' => [
+                'label' => 'Coordinat',
                 'rules' => 'required',
                 'errors' => [
                     'required' => '{field} Wajib Diisi !!'
                 ]
                 ],
+                'id_provinsi' => [
+                'label' => 'Provinsi',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} Wajib Diisi !!'
+                ]
+                ],
+                'id_kabupaten' => [
+                'label' => 'Kabupaten',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} Wajib Diisi !!'
+                ]
+                ],
+                'id_kecamatan' => [
+                'label' => 'Keccamatan',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} Wajib Diisi !!'
+                ]
+                ],
+                'alamat' => [
+                'label' => 'Alamat',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} Wajib Diisi !!'
+                ]
+                ],
+                'id_wilayah' => [
+                'label' => 'Wilayah Administrasi',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} Wajib Diisi !!'
+                ]
+                ],
+                'foto' => [
+                'label' => 'Foto Sekolah',
+                'rules' => 'required|max_size[foto,1024]mime_in [foto,image/jpg,image/jpeg,image/png]',
+                'errors' => [
+                    'required' => '{field} Wajib Diisi !!',
+                    'max_size' => 'Ukuran {field} max 1024 kb !!',
+                    'max_size' => 'Format {field} HARUS JPG, JPEG, PNG !!',
+                ]
+                ],               
             ])) {
             //jika validasi berhasil
             $data =[
@@ -71,11 +115,11 @@ class Wilayah extends BaseController
             ];
             $this->ModelWilayah->InsertData($data);
             session()->setFlashdata('insert', 'Data Berhasil Ditambahkan');
-            return redirect()->to('Wilayah');
+            return redirect()->to('Sekolah');
         }else {
             //jika validasi gagal
             session()->setFlashData('errors', \Config\Services::validation()->getErrors());
-            return redirect()->to('Wilayah/Input')->withInput();
+            return redirect()->to('Sekolah/Input')->withInput();
         }
     }
 
