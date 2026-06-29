@@ -17,6 +17,7 @@
                         <th width="50px">No</th>
                         <th>Nama Apotek</th>
                         <th>Alamat</th>
+                        <th>Jenjang</th>
                         <th>Koordinat</th>
                         <th>Foto</th>
                         <th width="100px">Aksi</th>
@@ -30,6 +31,7 @@
                             <td class="text-center"><?= $no++ ?></td>
                             <td class="text-center"><?= $value['nama_apotek'] ?? $value['nama_Apotek'] ?? 'Belum ada nama' ?></td>
                             <td class="text-center"><?= $value['alamat'] ?? 'Belum ada alamat' ?></td>
+                             <td class="text-center"><?= $value['jenjang'] ?? 'Belum ada alamat' ?></td>
                             <td>
                                 <?= $value['lat'] ?? $value['latitude'] ?? '0' ?>, 
                                 <?= $value['lng'] ?? $value['longitude'] ?? '0' ?>

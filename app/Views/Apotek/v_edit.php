@@ -7,15 +7,13 @@
             <?php 
             // Mengambil flashdata errors dari controller jika validasi gagal
             $errors = session()->getFlashdata('errors'); 
-            ?>
-            
-            <form action="<?= base_url('Apotek/InsertData') ?>" method="post" enctype="multipart/form-data">
-
+            ?>  
+            <form action="<?= base_url('Apotek/UpdateData/' . $apotek['id_apotek']) ?>" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Nama Apotek</label>
-                            <input name="nama_apotek" value="<?= old('nama_apotek') ?>" placeholder="Nama Apotek" class="form-control">
+                            <input name="nama_apotek" value="<?= old('nama_apotek', $apotek['nama_apotek']) ?>" placeholder="Nama Apotek" class="form-control">
                             <p class="text-danger"><?= isset($errors['nama_apotek']) ? $errors['nama_apotek'] : '' ?></p>
                         </div>
                     </div>

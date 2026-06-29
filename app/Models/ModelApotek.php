@@ -9,6 +9,7 @@ class ModelApotek extends Model
     public function AllData()
     {
         return $this->db->table('tbl_apotek')
+            ->join('tbl_jenjang', 'tbl_jenjang.id_jenjang = tbl_apotek.id_jenjang', 'left')
             ->get()->getResultArray();
     }
     
@@ -20,6 +21,7 @@ class ModelApotek extends Model
     public function DetailData($id_apotek)
     {
         return $this->db->table('tbl_apotek')
+        ->join('tbl_jenjang', 'tbl_jenjang.id_jenjang = tbl_apotek.id_jenjang', 'left')
         ->where('id_apotek', $id_apotek)
         ->get()->getRowArray();
     }
