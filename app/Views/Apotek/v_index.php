@@ -3,14 +3,15 @@
         <div class="card-header">
             <h3 class="card-title"><?= $judul ?></h3>
 
-            <div class="card-tools">
-                <a href="<?= base_url('Apotek/Input') ?>" class="btn btn-flat btn-primary btn-sm">
-                    <i class="fas fa-plus"></i> Tambah
-                </a>
-            </div>
-        </div>
-        
-        <div class="card-body">
+            <div class="card-body">
+            
+            <?php if (session()->getFlashdata('pesan')) : ?>
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h5><i class="icon fas fa-check"></i> <?= session()->getFlashdata('pesan'); ?></h5>
+                </div>
+            <?php endif; ?>
+
             <table id="example2" class="table table-sm table-bordered table-striped">
                 <thead>
                     <tr class="text-center">

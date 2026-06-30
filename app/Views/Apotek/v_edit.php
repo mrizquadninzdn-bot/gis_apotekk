@@ -23,8 +23,8 @@
                             <label>Status</label>
                             <select name="status" class="form-control">
                                 <option value="">--Pilih Status--</option>
-                                <option value="Negeri" <?= old('status') == 'Negeri' ? 'selected' : '' ?>>Negeri</option>
-                                <option value="Swasta" <?= old('status') == 'Swasta' ? 'selected' : '' ?>>Swasta</option>
+                                <option value="Negeri" <?= (strtoupper($apotek['status'])) == 'NEGERI' ? 'selected' : '' ?>>Negeri</option>
+                                <option value="Swasta" <?= (strtoupper($apotek['status'])) == 'SWASTA' ? 'selected' : '' ?>>Swasta</option>
                             </select>
                             <p class="text-danger"><?= isset($errors['status']) ? $errors['status'] : '' ?></p>
                         </div>                                        
@@ -36,7 +36,9 @@
                             <select name="id_jenjang" class="form-control">
                                 <option value="">--Pilih Jenjang--</option>
                                 <?php foreach ($jenjang as $key => $value) { ?>
-                                  <option value="<?= $value['id_jenjang'] ?>"><?= $value['jenjang'] ?></option>
+                                  <option value="<?= $value['id_jenjang'] ?>" <?= ($apotek['id_jenjang'] == $value['id_jenjang']) ? 'selected' : '' ?>>
+                                    <?= $value['jenjang'] ?>
+                                  </option>
                                 <?php } ?>
                             </select>
                             <p class="text-danger"><?= isset($errors['id_jenjang']) ? $errors['id_jenjang'] : '' ?></p>
@@ -48,7 +50,7 @@
                 <div class="form-group">
                     <label>Coordinat Apotek</label>
                     <div id="map" style="width:100%; height:500px; margin-bottom: 10px;"></div>
-                    <input name="coordinat" id="coordinat" value="<?= old('coordinat') ?>" placeholder="Coordinat Apotek" class="form-control" readonly>
+                    <input name="coordinat" id="coordinat" value="<?= $apotek['latitude'] . ',' . $apotek['longitude'] ?>" placeholder="Coordinat Apotek" class="form-control" readonly>
                     <p class="text-danger"><?= isset($errors['coordinat']) ? $errors['coordinat'] : '' ?></p>
                 </div>        
 
@@ -59,7 +61,7 @@
                             <select name="id_Provinsi" id="id_provinsi" class="form-control select2-lg">
                                 <option value="">--Pilih Provinsi--</option>
                                 <?php foreach ($provinsi as $key => $value) { ?>
-                                    <option value="<?= $value['id_provinsi'] ?>" <?= old('id_Provinsi') == $value['id_provinsi'] ? 'selected' : '' ?>><?= $value['nama_provinsi'] ?></option>
+                                    <option value="<?= $value['id_provinsi'] ?>" <?= ($apotek['id_provinsi'] == $value['id_provinsi']) ? 'selected' : '' ?>><?= $value['nama_provinsi'] ?></option>
                                 <?php } ?>
                             </select>
                             <p class="text-danger"><?= isset($errors['id_Provinsi']) ? $errors['id_Provinsi'] : '' ?></p>
@@ -70,7 +72,7 @@
                         <div class="form-group">
                             <label>Kabupaten</label>
                             <select name="id_kabupaten" id="id_kabupaten" class="form-control select2-lg">
-                                <option value="">--Pilih Kabupaten--</option>
+                                <option value="><?= $apotek['id_kabupaten'] ?>"><?= $apotek['nama_kabupaten'] ?></option><?= $apotek['nama_kabupaten'] ?>
                             </select>
                             <p class="text-danger"><?= isset($errors['id_kabupaten']) ? $errors['id_kabupaten'] : '' ?></p>
                         </div>                                        
@@ -80,7 +82,7 @@
                         <div class="form-group">
                             <label>Kecamatan</label>
                             <select name="id_kecamatan" id="id_kecamatan" class="form-control select2-lg">
-                                <option value="">--Pilih Kecamatan--</option>
+                                <option value="><?= $apotek['id_kecamatan'] ?>"><?= $apotek['nama_kecamatan'] ?></option><?= $apotek['nama_kecamatan'] ?>
                             </select>
                             <p class="text-danger"><?= isset($errors['id_kecamatan']) ? $errors['id_kecamatan'] : '' ?></p>
                         </div>                                        
@@ -91,7 +93,7 @@
                     <div class="col-sm-8">
                         <div class="form-group">
                             <label>Alamat</label>
-                            <input name="alamat" value="<?= old('alamat') ?>" placeholder="Alamat Apotek" class="form-control">
+                            <input name="alamat" value="<?= $apotek['alamat'] ?>" placeholder="Alamat Apotek" class="form-control">
                             <p class="text-danger"><?= isset($errors['alamat']) ? $errors['alamat'] : '' ?></p>
                         </div>
                     </div>
@@ -102,7 +104,7 @@
                             <select name="id_wilayah" class="form-control">
                                 <option value="">--Pilih Wilayah Administrasi--</option>
                                 <?php foreach ($wilayah as $key => $value) { ?>
-                                    <option value="<?= $value['id_wilayah'] ?>" <?= old('id_wilayah') == $value['id_wilayah'] ? 'selected' : '' ?>><?= $value['nama_wilayah'] ?></option>
+                                    <option value="<?= $value['id_wilayah'] ?>" <?= $value['id_wilayah'] ?>" <?= ($apotek['id_wilayah'] == $value['id_wilayah']) ? 'selected' : '' ?>><?= $value['nama_wilayah'] ?></option>
                                 <?php } ?>
                             </select>
                             <p class="text-danger"><?= isset($errors['id_wilayah']) ? $errors['id_wilayah'] : '' ?></p>
@@ -111,7 +113,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Foto Apotek</label>
+                    <label>Ganti Foto Apotek</label>
                     <input type="file" accept=".jpg,.jpeg,.png" name="foto" class="form-control">
                     <p class="text-danger"><?= isset($errors['foto']) ? $errors['foto'] : '' ?></p>
                 </div>

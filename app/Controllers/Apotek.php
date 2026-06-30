@@ -163,10 +163,117 @@ public function InsertData()
             'provinsi'   => $this->ModelApotek->allProvinsi(),
             'wilayah' => $this->ModelWilayah->AllData(),
             'jenjang' => $this->ModelJenjang->AllData(),
-            'apotek'   => $apotekData,
+            'apotek'   => $this->ModelApotek->DetailData($id_apotek),
         ];
         return view('v_template_back_end', $data);
     }
+public function UpdateData($id_apotek)
+    {
+        if ($this->validate([
+            'nama_apotek' => [
+                'label'  => 'Nama Apotek',
+                'rules'  => 'required',
+                'errors' => ['required' => '{field} Wajib Diisi !!']
+            ],
+            'status' => [
+                'label'  => 'Status',
+                'rules'  => 'required',
+                'errors' => ['required' => '{field} Wajib Diisi !!']
+            ],
+            'id_jenjang' => [
+                'label'  => 'Jenjang',
+                'rules'  => 'required',
+                'errors' => ['required' => '{field} Wajib Diisi !!']
+            ],
+            'coordinat' => [
+                'label'  => 'Coordinat Apotek',
+                'rules'  => 'required',
+                'errors' => ['required' => '{field} Wajib Diisi !!']
+            ],
+            'id_Provinsi' => [
+                'label'  => 'Provinsi',
+                'rules'  => 'required',
+                'errors' => ['required' => '{field} Wajib Diisi !!']
+            ],
+            'id_kabupaten' => [
+                'label'  => 'Kabupaten',
+                'rules'  => 'required',
+                'errors' => ['required' => '{field} Wajib Diisi !!']
+            ],
+            'id_kecamatan' => [
+                'label'  => 'Kecamatan',
+                'rules'  => 'required',
+                'errors' => ['required' => '{field} Wajib Diisi !!']
+            ],
+            'alamat' => [
+                'label'  => 'Alamat',
+                'rules'  => 'required',
+                'errors' => ['required' => '{field} Wajib Diisi !!']
+            ],
+            'id_wilayah' => [
+                'label'  => 'Wilayah Administrasi',
+                'rules'  => 'required',
+                'errors' => ['required' => '{field} Wajib Diisi !!']
+            ],
+            'foto' => [
+                'label'  => 'Foto Apotek',
+                'rules'  => 'max_size[foto,1024]|mime_in[foto,image/jpg,image/jpeg,image/png]',
+                'errors' => [
+                    'max_size' => 'Ukuran {field} maksimal 1024 KB !!',
+                    'mime_in'  => 'Format {field} harus JPG, JPEG, atau PNG !!'
+                ]
+            ],
+        ])) {
+            $apotek = $this->ModelApotek->DetailData($id_apotek);
+            // 1. Ambil file foto dan generate nama acak
+            $foto = $this->request->getFile('foto');
+            
+
+            if ($foto->getError() == 4) {
+                $nama_file = $apotek['foto'];
+            }else {
+                $nama_file = $foto->getRandomName();
+                $foto->move('Foto', $nama_file);
+            }
+
+            // 2. PROSES MEMECAH KOORDINAT MENJADI LATITUDE & LONGITUDE
+            $koordinat_mentah = $this->request->getPost('coordinat'); // format: "lat,lng"
+            $pecah = explode(',', $koordinat_mentah);
+            $latitude  = isset($pecah[0]) ? trim($pecah[0]) : '';
+            $longitude = isset($pecah[1]) ? trim($pecah[1]) : '';
+
+            // 3. Susun Array Data Sesuai Struktur Kolom Database Anda (image_cc8582.png)
+            $data = [
+                'id_apotek'    => $id_apotek,
+                'nama_apotek'  => $this->request->getPost('nama_apotek'),
+                'status'       => $this->request->getPost('status'),
+                'latitude'     => $latitude,  // Sesuai kolom database Anda
+                'longitude'    => $longitude, // Sesuai kolom database Anda
+                'id_jenjang'  => $this->request->getPost('id_jenjang'),
+                'id_provinsi'  => $this->request->getPost('id_provinsi'),
+                'id_kabupaten' => $this->request->getPost('id_kabupaten'),
+                'id_kecamatan' => $this->request->getPost('id_kecamatan'),
+                'alamat'       => $this->request->getPost('alamat'),
+                'id_wilayah'   => $this->request->getPost('id_wilayah'),
+                'foto'         => $nama_file, // Sesuai kolom database Anda
+            ];
+
+            // 4. Pindahkan file fisik gambar ke folder public/foto_apotek
+            
+
+            // 5. Simpan ke database
+            $this->ModelApotek->UpdateData($data);
+
+            session()->setFlashdata('pesan', 'Data Apotek Berhasil Diupdate !!');
+            return redirect()->to(base_url('Apotek'));
+
+        } else {
+            // Jika validasi gagal
+            session()->setFlashdata('errors', \Config\Services::validation()->getErrors());
+            return redirect()->to(base_url('Apotek/Edit/' . $id_apotek))->withInput();
+        }
+    }
+
     //Kabupaten, Kecamatan
     public function Kabupaten()
     {
