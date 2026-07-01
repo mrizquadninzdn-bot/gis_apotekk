@@ -40,4 +40,13 @@ $routes->post('Apotek/Kecamatan', 'Apotek::Kecamatan');
 $routes->post('Apotek/InsertData', 'Apotek::InsertData');
 $routes->get('Apotek/Edit/(:num)', 'Apotek::Edit');
 $routes->post('Apotek/UpdateData/(:num)', 'Apotek::UpdateData');
+$routes->get('Apotek/Delete/(:num)', 'Apotek::DeleteData/$1');
+// TAMBAHKAN BARIS INI DI SEKITAR RUTE APOTEK LAINNYA
+$routes->get('Apotek/Detail/(:num)', 'Apotek::DetailData/$1');
+
+$routes->get('User', 'User::index');
+$routes->get('User/Input', 'User::input'); // <-- TAMBAHKAN BARIS INI
+$routes->post('User/InsertData', 'User::InsertData');
+$routes->get('User/Edit/(:any)', 'User::Edit/$1');
+$routes->post('User/UpdateData/(:any)', 'User::UpdateData/$1');
 

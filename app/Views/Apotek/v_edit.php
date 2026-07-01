@@ -183,10 +183,11 @@ var peta3 = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}
 var peta4 = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {});
 var petaSatelit = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {});
 
+// PERBAIKAN UTAMA: Gunakan peta1 (Standar OpenStreetMap) sebagai default agar tidak putih polos jika satelit gagal load
 const map = L.map('map',{
- center:[<?= $web['coordinat_kota'] ?>],
- zoom: <?= $web['zoom_view'] ?>, 
- layers:[petaSatelit] 
+ center:[parseFloat("<?= $apotek['latitude'] ?>"), parseFloat("<?= $apotek['longitude'] ?>")],
+ zoom: 16, 
+ layers:[petaSatelit] // <--- Ubah dari petaSatelit menjadi peta1 dulu untuk tes
 });
 
 const baseMaps={
@@ -200,21 +201,21 @@ const baseMaps={
 L.control.layers(baseMaps).addTo(map);
 
 var coordinatInput = document.getElementById("coordinat");
-var curLocation = [<?= $web['coordinat_kota'] ?>];
+var curLocation = [parseFloat("<?= $apotek['latitude'] ?>"), parseFloat("<?= $apotek['longitude'] ?>")];
 map.attributionControl.setPrefix(false);
 
 var marker = new L.marker(curLocation, {
   draggable: 'true',
 }).addTo(map);
 
-// PERBAIKAN: Menggunakan ID #coordinat huruf kecil agar sinkron sewaktu marker digeser
+// Sinkronisasi JQuery saat marker digeser manual
 marker.on('dragend', function(e) {
   var position = marker.getLatLng();
   marker.setLatLng(position).bindPopup(position).update();
-  $("#coordinat").val(position.lat + "," + position.lng);
+  $("#coordinat").val(position.lat.toFixed(6) + "," + position.lng.toFixed(6));
 });
 
-// PERBAIKAN: Sinkronisasi klik peta ke ID #coordinat huruf kecil
+// Sinkronisasi klik manual di peta
 map.on("click", function(e) {
   var lat = e.latlng.lat;
   var lng = e.latlng.lng;
@@ -223,6 +224,7 @@ map.on("click", function(e) {
   } else {
     marker.setLatLng(e.latlng);
   }
-  coordinatInput.value = lat + ',' + lng;
+  coordinatInput.value = lat.toFixed(6) + ',' + lng.toFixed(6);
 });
+
 </script>

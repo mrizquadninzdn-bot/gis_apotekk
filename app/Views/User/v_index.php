@@ -3,7 +3,7 @@
         <div class="card-header">
             <h3 class="card-title"><?= $judul ?></h3>
             <div class="card-tools">
-                <a href="<?= base_url('Apotek/Input') ?>" class="btn btn-sm btn-flat btn-primary">
+                <a href="<?= base_url('User/Input') ?>" class="btn btn-sm btn-flat btn-primary">
                     <i class="fas fa-plus"></i> Tambah
                 </a>
             </div>
@@ -21,10 +21,9 @@
                 <thead>
                     <tr class="text-center">
                         <th width="50px">No</th>
-                        <th>Nama Apotek</th>
-                        <th>Alamat</th>
-                        <th>Jenjang</th>
-                        <th>Koordinat</th>
+                        <th>Nama User</th>
+                        <th>E-mail</th>
+                        <th>Password</th>
                         <th>Foto</th>
                         <th width="100px">Aksi</th>
                     </tr>
@@ -32,23 +31,18 @@
                 <tbody>
                     <?php $no = 1;
                     // PERBAIKAN UTAMA: Menggunakan $apotek yang bersumber dari ModelApotek
-                    foreach ($apotek as $key => $value) { ?>
+                    foreach ($user as $key => $value) { ?>
                         <tr>
                             <td class="text-center"><?= $no++ ?></td>
-                            <td class="text-center"><?= $value['nama_apotek'] ?? $value['nama_Apotek'] ?? 'Belum ada nama' ?></td>
-                            <td class="text-center"><?= $value['alamat'] ?? 'Belum ada alamat' ?></td>
-                             <td class="text-center"><?= $value['jenjang'] ?? 'Belum ada alamat' ?></td>
-                            <td>
-                                <?= $value['lat'] ?? $value['latitude'] ?? '0' ?>, 
-                                <?= $value['lng'] ?? $value['longitude'] ?? '0' ?>
+                            <td><?= $value['nama_user'] ?></td>
+                            <td class="text-center"><?= $value['email'] ?></td>
+                            <td class="text-center"><?= $value['password'] ?></td>
+                            <td class="text-center">
+                                <img src="<?= base_url('foto/' . $value['foto']) ?>" width="100px" class="img-thumbnail" alt="Foto Apotek">
                             </td>
                             <td class="text-center">
-                                <img src="<?= base_url('foto/' . $value['foto']) ?>" width="150px" class="img-thumbnail" alt="Foto Apotek">
-                            </td>
-                            <td class="text-center">
-                                <a href="<?= base_url('Apotek/Detail/'. ($value['id_apotek'] ?? $value['id'] ?? '')) ?>" class="btn btn-xs btn-success btn-flat"><i class="fas fa-eye"></i></a>
-                                <a href="<?= base_url('Apotek/Edit/'. ($value['id_apotek'] ?? $value['id'] ?? '')) ?>" class="btn btn-xs btn-warning btn-flat"><i class="fas fa-pencil-alt"></i></a>
-                                <a href="<?= base_url('Apotek/Delete/'. ($value['id_apotek'] ?? $value['id'] ?? '')) ?>" onclick="return confirm('Yakin Hapus Data Apotek..?')" class="btn btn-xs btn-danger btn-flat"><i class="fas fa-trash"></i></a>
+                                <a href="<?= base_url('User/Edit/'. ($value['id_user'] ?? $value['id_user'] ?? '')) ?>" class="btn btn-xs btn-warning btn-flat"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="<?= base_url('User/Delete/'. ($value['id_user'] ?? $value['id_user'] ?? '')) ?>" onclick="return confirm('Yakin Hapus Data Apotek..?')" class="btn btn-xs btn-danger btn-flat"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                     <?php } ?>

@@ -22,8 +22,10 @@ class ModelApotek extends Model
     {
         return $this->db->table('tbl_apotek')
         ->join('tbl_jenjang', 'tbl_jenjang.id_jenjang = tbl_apotek.id_jenjang', 'left')
+        ->join('tbl_provinsi', 'tbl_provinsi.id_provinsi = tbl_apotek.id_provinsi', 'left')
         ->join('tbl_kabupaten', 'tbl_kabupaten.id_kabupaten = tbl_apotek.id_kabupaten', 'left')
         ->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan = tbl_apotek.id_kecamatan', 'left')
+        ->join('tbl_wilayah', 'tbl_wilayah.id_wilayah = tbl_apotek.id_wilayah', 'left')
         ->where('id_apotek', $id_apotek)
         ->get()->getRowArray();
     }

@@ -274,6 +274,47 @@ public function UpdateData($id_apotek)
         }
     }
 
+    //DELETE
+    // PERBAIKAN 1: Nama fungsi diubah dari Delete menjadi DeleteData agar sinkron dengan Routes
+    public function DeleteData($id_apotek)
+    {
+        //delete foto
+        $apotek = $this->ModelApotek->DetailData($id_apotek);
+        if ($apotek['foto'] <> '') {
+            unlink('foto/' . $apotek['foto']);
+        }
+        // Ambil detail data dulu untuk hapus file foto lama di folder
+        $apotek = $this->ModelApotek->DetailData($id_apotek);
+        if (!empty($apotek['foto']) && file_exists('Foto/' . $apotek['foto'])) {
+            unlink('Foto/' . $apotek['foto']);
+        }
+
+        $data = [
+            'id_apotek' => $id_apotek,
+        ];
+        
+        $this->ModelApotek->DeleteData($data);
+        
+        // PERBAIKAN 2: Ubah setFlasdata menjadi setFlashdata (tambah huruf h), 
+        // dan ubah 'delete' menjadi 'pesan' agar otomatis terbaca oleh v_index.php yang tadi kita pasang
+        session()->setFlashdata('pesan', 'Data Apotek Berhasil Dihapus !!');
+        
+        return redirect()->to(base_url('Apotek'));
+    }
+
+    public function DetailData($id_apotek)
+    {
+        $apotekData = $this->ModelApotek->DetailData($id_apotek);
+        $data = [
+            'judul' => 'DETAIL ' . $apotekData['nama_apotek'],
+            'menu'  => 'apotek',
+            'page' => 'Apotek/v_detail',
+            'web'   => $this->ModelSetting->DataWeb(),
+            'apotek'   => $this->ModelApotek->DetailData($id_apotek),
+        ];
+        return view('v_template_back_end', $data);
+    }
+
     //Kabupaten, Kecamatan
     public function Kabupaten()
     {
