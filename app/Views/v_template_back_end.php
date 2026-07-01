@@ -168,10 +168,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+            <a href="<?= base_url('User') ?>" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
               <p>
-                Simple Link
+                User
                 <span class="right badge badge-danger">New</span>
               </p>
             </a>
