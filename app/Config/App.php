@@ -39,7 +39,7 @@ public $baseURL = 'http://localhost/gis_apotekk/public/';
      * something else. If you have configured your web server to remove this file
      * from your site URIs, set this variable to an empty string.
      */
-    public $indexPage = 'index.php';
+    public $indexPage = '';
 
     /**
      * --------------------------------------------------------------------------

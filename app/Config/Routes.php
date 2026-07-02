@@ -49,4 +49,12 @@ $routes->get('User/Input', 'User::input'); // <-- TAMBAHKAN BARIS INI
 $routes->post('User/InsertData', 'User::InsertData');
 $routes->get('User/Edit/(:any)', 'User::Edit/$1');
 $routes->post('User/UpdateData/(:any)', 'User::UpdateData/$1');
+$routes->get('User/Delete/(:any)', 'User::Delete/$1');
+
+// Rute untuk menampilkan halaman login
+$routes->get('Auth/Login', 'Auth::Login');
+// Rute untuk memeriksa username & password saat tombol Login ditekan
+$routes->post('Auth/CekLogin', 'Auth::CekLogin');
+// Rute untuk keluar/clear session
+$routes->get('Auth/Logout', 'Auth::Logout');
 

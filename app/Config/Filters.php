@@ -34,6 +34,7 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
+        'authfilter'    => \App\Filters\FilterAuth::class,
     ];
 
     /**
@@ -51,8 +52,7 @@ class Filters extends BaseFilters
      */
     public array $required = [
         'before' => [
-            'forcehttps', // Force Global Secure Requests
-            'pagecache',  // Web Page Caching
+            
         ],
         'after' => [
             'pagecache',   // Web Page Caching
@@ -70,15 +70,39 @@ class Filters extends BaseFilters
      *     after: array<string, array{except: list<string>|string}>|list<string>
      * }
      */
+    /**
+     * List of filter aliases that are always
+     * applied before and after every request.
+     */
     public array $globals = [
         'before' => [
             // 'honeypot',
             // 'csrf',
-            // 'invalidchars',
+            
+            'authfilter' => ['except' => [
+                '/',
+                'Home', 'Home/*',
+                'Auth', 'Auth/*',
+                'auth', 'auth/*', // ✔️ Tambahkan ini agar aman dari case-sensitivity URL
+                'css/*', 'js/*', 'img/*', 'assets/*'
+            ]],
         ],
         'after' => [
             // 'honeypot',
-            // 'secureheaders',
+            
+            'authfilter' => ['except' => [
+                'Auth', 'Auth/*',
+                'auth', 'auth/*', // ✔️ Tambahkan ini juga
+                'Admin', 'Admin/*',
+                'admin', 'admin/*',
+                'User', 'User/*',
+                'user', 'user/*',
+                'Sekolah', 'Sekolah/*',
+                'Jenjang', 'Jenjang/*',
+                'Wilayah', 'Wilayah/*',
+                
+                'css/*', 'js/*', 'img/*', 'assets/*'
+            ]],
         ],
     ];
 

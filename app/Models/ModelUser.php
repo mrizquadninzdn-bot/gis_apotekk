@@ -25,17 +25,19 @@ class ModelUser extends Model
         ->get()->getRowArray();
     }
     
-    public function UpdateData($id_user)
+    // PERBAIKAN: Gunakan langsung variabel $id_user di dalam where()
+    public function UpdateData($id_user, $data)
     {
-        $this->db->table('tbl_User')
-        ->where('id_User', $data['id_User'])
-        ->update($data);
+        return $this->db->table('tbl_User')
+            ->where('id_user', $id_user) // Menggunakan variabel $id_user langsung, bukan $data['id_User']
+            ->update($data);
     }
-
+    
+    // PERBAIKAN UNTUK HAPUS: Gunakan langsung variabel $id_user
     public function DeleteData($id_user)
     {
-        $this->db->table('tbl_User')
-        ->where('id_User', $data['id_User'])
-        ->delete($data);
+        return $this->db->table('tbl_User')
+            ->where('id_user', $id_user) // Menggunakan variabel $id_user langsung
+            ->delete();
     }
 }

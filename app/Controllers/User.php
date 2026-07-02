@@ -13,7 +13,6 @@ class User extends BaseController
     {
         $this->ModelUser = new ModelUser();
     }
-
     public function index()
     {
         $data = [
@@ -29,7 +28,7 @@ class User extends BaseController
         $data = [
             'judul' => 'Input User',
             'menu'  => 'user',
-            'page'  => 'User/v_input', // Dipastikan huruf U besar sesuai folder
+            'page'  => 'User/v_input',
         ];
         return view('v_template_back_end', $data);
     }
@@ -39,7 +38,7 @@ class User extends BaseController
         $data = [
             'judul' => 'Edit User',
             'menu'  => 'user',
-            'page'  => 'User/v_edit', // Dipastikan huruf U besar sesuai folder
+            'page'  => 'User/v_edit',
             'user'  => $this->ModelUser->DetailData($id_user),
         ];
         return view('v_template_back_end', $data);
@@ -55,7 +54,7 @@ class User extends BaseController
             ],
             'email' => [
                 'label'  => 'E-Mail',
-                'rules'  => 'required|valid_email', // Ditambah pengaman valid_email
+                'rules'  => 'required|valid_email',
                 'errors' => [
                     'required' => '{field} Wajib Diisi !!',
                     'valid_email' => 'Format {field} tidak valid !!'
@@ -76,18 +75,15 @@ class User extends BaseController
             ],
         ])) {
             
-            // 1. Ambil file foto dari form
             $foto = $this->request->getFile('foto');
             
-            // PERBAIKAN UTAMA: Cek apakah user mengupload foto baru atau tidak
             if ($foto->isValid() && !$foto->hasMoved()) {
                 $nama_file = $foto->getRandomName();
-                $foto->move('foto', $nama_file); // Memasukkan ke folder public/foto
+                $foto->move('foto', $nama_file);
             } else {
-                $nama_file = 'default.png'; // Jika tidak upload, beri nama default.png
+                $nama_file = 'default.png';
             }
 
-            // 2. Susun Array Data (Kode koordinat apotek yang mubazir sudah dihapus)
             $data = [
                 'nama_user' => $this->request->getPost('nama_user'),
                 'email'     => $this->request->getPost('email'),
@@ -95,14 +91,12 @@ class User extends BaseController
                 'foto'      => $nama_file,
             ];
 
-            // 3. Simpan ke database melalui model
             $this->ModelUser->InsertData($data);
 
             session()->setFlashdata('pesan', 'Data Berhasil Ditambahkan !!');
             return redirect()->to(base_url('User'));
 
         } else {
-            // Jika validasi gagal
             session()->setFlashdata('errors', \Config\Services::validation()->getErrors());
             return redirect()->to(base_url('User/Input'))->withInput();
         }
@@ -110,6 +104,9 @@ class User extends BaseController
 
     public function UpdateData($id_user)
     {
+        // Ambil data user lama untuk mempertahankan foto jika tidak diganti
+        $user_lama = $this->ModelUser->DetailData($id_user);
+
         if ($this->validate([
             'nama_user' => [
                 'label'  => 'Nama user',
@@ -118,7 +115,7 @@ class User extends BaseController
             ],
             'email' => [
                 'label'  => 'E-Mail',
-                'rules'  => 'required|valid_email', // Ditambah pengaman valid_email
+                'rules'  => 'required|valid_email',
                 'errors' => [
                     'required' => '{field} Wajib Diisi !!',
                     'valid_email' => 'Format {field} tidak valid !!'
@@ -127,7 +124,11 @@ class User extends BaseController
             'password' => [
                 'label'  => 'Password',
                 'rules'  => 'required',
-                'errors' => ['required' => '{field} Wajib Diisi !!']
+                'errors' => [
+                    'required' => '{field} Wajib Diisi !!',
+                    'valid_email' => 'Format {field} tidak valid !!'
+                ]
+                
             ],
             'foto' => [
                 'label'  => 'Foto User',
@@ -139,44 +140,68 @@ class User extends BaseController
             ],
         ])) {
             
-            // 1. Ambil file foto dari form
             $foto = $this->request->getFile('foto');
             
-            // PERBAIKAN UTAMA: Cek apakah user mengupload foto baru atau tidak
+            // Logika pengecekan file foto edit yang benar dan bersih
             if ($foto->isValid() && !$foto->hasMoved()) {
                 $nama_file = $foto->getRandomName();
-                $user = $this->ModelApotek->DetailData($id_user);
-            
-
-            if ($foto->getError() == 4) {
-                $nama_file = $user['foto'];
-            }else {
-                $nama_file = $foto->getRandomName();
-                $foto->move('Foto', $nama_file);
-            }
-                $foto->move('foto', $nama_file); // Memasukkan ke folder public/foto
+                $foto->move('foto', $nama_file);
+                
+                // Menghapus foto lama di folder jika ada (kecuali foto default)
+                if ($user_lama['foto'] != 'default.png' && file_exists('foto/' . $user_lama['foto'])) {
+                    unlink('foto/' . $user_lama['foto']);
+                }
             } else {
-                $nama_file = 'default.png'; // Jika tidak upload, beri nama default.png
+                $nama_file = $user_lama['foto']; // Gunakan foto lama jika tidak unggah baru
             }
 
-            // 2. Susun Array Data (Kode koordinat apotek yang mubazir sudah dihapus)
             $data = [
                 'nama_user' => $this->request->getPost('nama_user'),
                 'email'     => $this->request->getPost('email'),
-                'password'  => sha1($this->request->getPost('password')),
                 'foto'      => $nama_file,
             ];
 
-            // 3. Simpan ke database melalui model
-            $this->ModelUser->UpdateData($data);
+            // Password hanya di-update jika kolom password diisi oleh admin
+            $password = $this->request->getPost('password');
+            if (!empty($password)) {
+                $data['password'] = sha1($password);
+            }
 
-            session()->setFlashdata('Update', 'Data Berhasil Ditambahkan !!');
+            // Kirim parameter lengkap ($id_user dan $data) ke ModelUser
+            $this->ModelUser->UpdateData($id_user, $data);
+
+            session()->setFlashdata('pesan', 'Data Berhasil Diupdate !!');
             return redirect()->to(base_url('User'));
 
         } else {
-            // Jika validasi gagal
+            // PERBAIKAN: Ditambahkan '/' sebelum $id_user agar rutenya valid dan tidak 404
             session()->setFlashdata('errors', \Config\Services::validation()->getErrors());
-            return redirect()->to(base_url('User/Edit'))->withInput();
+            return redirect()->to(base_url('User/Edit/' . $id_user))->withInput();
         }
+    }
+    public function Delete($id_user)
+    {
+        //delete foto
+        $user = $this->ModelUser->DetailData($id_user);
+        if ($user['foto'] <> '') {
+            unlink('foto/' . $user['foto']);
+        }
+        // Ambil detail data dulu untuk hapus file foto lama di folder
+        $user = $this->ModelUser->DetailData($id_user);
+        if (!empty($user['foto']) && file_exists('Foto/' . $user['foto'])) {
+            unlink('Foto/' . $user['foto']);
+        }
+
+        $data = [
+            'id_user' => $id_user,
+        ];
+        
+        $this->ModelUser->DeleteData($data);
+        
+        // PERBAIKAN 2: Ubah setFlasdata menjadi setFlashdata (tambah huruf h), 
+        // dan ubah 'delete' menjadi 'pesan' agar otomatis terbaca oleh v_index.php yang tadi kita pasang
+        session()->setFlashdata('pesan', 'Data Berhasil Didelete !!');
+        return redirect()->to(base_url('User'));
+        
     }
 }

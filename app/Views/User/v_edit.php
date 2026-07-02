@@ -8,8 +8,7 @@
         $errors = session()->getFlashdata('errors'); 
         ?>
         
-        <form action="<?= base_url('User/UpdateData/' . $user['id_user']) ?>" method="post" enctype="multipart/form-data">
-            <div class="form-group">
+<form action="<?= base_url('User/UpdateData/' . $user['id_user']) ?>" method="post" enctype="multipart/form-data"> <div class="form-group">
                 <label>Nama User</label>
                 <input name="nama_user" value="<?= $user['nama_user'] ?>" placeholder="Nama User" class="form-control">
                 <p class="text-danger"><?= isset($errors['nama_user']) ? $errors['nama_user'] : '' ?></p>
