@@ -80,10 +80,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
       
       
       
-      <li class="nav-item">
-        <a class="nav-link" href="#" >
+      <a href="<?= base_url('Auth/Logout') ?>" class="nav-link">
           <i class="fas fa-sign-out-alt"></i> Log Out
-        </a>
+      </a>
       </li>
     </ul>
   </nav>
@@ -102,10 +101,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<?= base_url('AdminLTE')?>/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
+<img src="<?= base_url('foto/' . session()->get('foto')) ?>" class="img-circle elevation-2" alt="User Image">        </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block"><?= session()->get('nama_user') ?></a>
         </div>
       </div>
 
