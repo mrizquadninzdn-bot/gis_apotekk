@@ -16,7 +16,7 @@ class FilterAuth implements FilterInterface
         // Jika session 'log' tidak ada / belum login
         if (empty(session()->get('login') ==1)) {
             // Tendang user kembali ke halaman login dengan pesan peringatan
-            session()->setFlashdata('pesan', 'Anda Harus Login Terlebih Dahulu !!');
+            session()->setFlashdata('pesan', 'Anda Belum Login, Silahkan Login Terlebih Dahulu !!');
             return redirect()->to(base_url('Auth/Login'));
         }
     }
@@ -31,12 +31,5 @@ class FilterAuth implements FilterInterface
             return redirect()->to(base_url('Admin')); 
         }
     }
-    public function __construct()
-{
-    // Pastikan di sini mengecek 'login' (bukan 'log')
-    if (session()->get('login') == '') {
-        session()->setFlashdata('pesan', 'Anda Belum Login, Silahkan Login Terlebih Dahulu !!');
-        return redirect()->to(base_url('Auth/Login'))->send();
-    }
-}
+    
 }

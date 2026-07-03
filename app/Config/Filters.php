@@ -96,8 +96,6 @@ class Filters extends BaseFilters
                 '/',                         // <-- TAMBAHKAN INI
                 'Home', 'Home/*',            // <-- TAMBAHKAN INI
                 'home/*',
-                'Auth', 'Auth/*',
-                'auth', 'auth/*', // ✔️ Tambahkan ini juga
                 'Admin', 'Admin/*',
                 'admin', 'admin/*',
                 'User', 'User/*',

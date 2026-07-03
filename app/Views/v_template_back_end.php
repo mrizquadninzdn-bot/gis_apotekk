@@ -125,13 +125,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-<img src="<?= base_url('foto/' . session()->get('foto')) ?>" class="img-circle elevation-2" alt="User Image">        </div>
-        <div class="info">
-          <a href="#" class="d-block"><?= session()->get('nama_user') ?></a>
-        </div>
-      </div>
+<div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center">
+  <div class="image">
+    <!-- Ukuran foto dinaikkan ke 45px dan diberi object-fit agar tidak gepeng -->
+    <img src="<?= base_url('foto/' . session()->get('foto')) ?>" 
+         class="img-circle elevation-2" 
+         style="width: 45px; height: 45px; object-fit: cover; object-position: center;" 
+         alt="User Image">
+  </div>
+  <div class="info pl-3">
+    <!-- Ukuran font diperbesar ke 16px dan dibuat sedikit tebal -->
+    <a href="#" class="d-block font-weight-bold" style="font-size: 16px; line-height: 1.2;">
+      <?= session()->get('nama_user') ?>
+    </a>
+  </div>
+</div>
 
       <!-- SidebarSearch Form -->
       <div class="form-inline">

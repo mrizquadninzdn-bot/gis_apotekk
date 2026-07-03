@@ -20,17 +20,17 @@
                             <td><?= $apotek['nama_apotek'] ?></td>
                         <tr>
                         <tr>
-                            <th>Jenjang Sekolah</th>
+                            <th>Jenjang Apotek</th>
                             <th>:</th>
                             <td><?= $apotek['jenjang'] ?></td>
                         <tr>
                         <tr>
-                            <th>Status Sekolah</th>
+                            <th>Status Apotek</th>
                             <th>:</th>
                             <td><?= $apotek['status'] ?></td>
                         <tr>
                         <tr>
-                            <th>Alamat Sekolah</th>
+                            <th>Alamat Apotek</th>
                             <th>:</th>
                             <td><?= $apotek['alamat'] ?>, <?= $apotek['nama_kecamatan'] ?>, <?= $apotek['nama_kabupaten'] ?>, <?= $apotek['nama_provinsi'] ?></td>
                         <tr>
