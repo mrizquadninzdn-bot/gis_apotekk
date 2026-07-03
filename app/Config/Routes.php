@@ -58,3 +58,4 @@ $routes->post('Auth/CekLogin', 'Auth::CekLogin');
 // Rute untuk keluar/clear session
 $routes->get('Auth/Logout', 'Auth::Logout');
 
+$routes->post('home/kirim_feedback', 'Home::kirim_feedback');

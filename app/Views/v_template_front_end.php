@@ -1,9 +1,4 @@
-
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -17,10 +12,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Theme style -->
   <link rel="stylesheet" href="<?= base_url('AdminLTE')?>/dist/css/adminlte.min.css">
 
-  <!-- leaflet -->
+  <!-- Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
 <body class="hold-transition sidebar-collapse layout-top-nav">
 <div class="wrapper">
@@ -28,10 +22,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
     <div class="container">
-      <a href="<?= base_url('AdminLTE')?>/index3.html" class="navbar-brand">
-        <img src="<?= base_url('AdminLTE')?>/dist/img/AdminLTELogo.png" class="me-2" height="50px" width="60px">
+      <a href="<?= base_url() ?>" class="navbar-brand">
+        <img src="<?= base_url('AdminLTE')?>/dist/img/LogoGisApotek.jpeg" class="me-2" height="50px" style="width: auto; object-fit: contain;">
       </a>
-      <h5><b>GIS Apoteek</b></h5>
+      <h5><b>GIS APOTEK </b></h5>
       <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -40,45 +34,89 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Left navbar links -->
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            <a href="<?= base_url() ?>" class="nav-link"><i class="fas fa-home"></i> Home</a>
           </li>
-          <li class="nav-item">
-            <a href="index3.html" class="nav-link">Home</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">Contact</a>
-          </li>
+
+          <!-- DROPDOWN: TENTANG KAMI -->
           <li class="nav-item dropdown">
-            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
-            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-              <li><a href="#" class="dropdown-item">Some action </a></li>
-              <li><a href="#" class="dropdown-item">Some other action</a></li>
-
-              <li class="dropdown-divider"></li>
-
-              <!-- Level two dropdown-->
-              <li class="dropdown-submenu dropdown-hover">
-                <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Hover for action</a>
-                <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-                  <li>
-                    <a tabindex="-1" href="#" class="dropdown-item">level 2</a>
-                  </li>
-
-                  <!-- Level three dropdown-->
-                  <li class="dropdown-submenu">
-                    <a id="dropdownSubMenu3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">level 2</a>
-                    <ul aria-labelledby="dropdownSubMenu3" class="dropdown-menu border-0 shadow">
-                      <li><a href="#" class="dropdown-item">3rd level</a></li>
-                      <li><a href="#" class="dropdown-item">3rd level</a></li>
-                    </ul>
-                  </li>
-                  <!-- End Level three -->
-
-                  <li><a href="#" class="dropdown-item">level 2</a></li>
-                  <li><a href="#" class="dropdown-item">level 2</a></li>
-                </ul>
+            <a id="dropdownTentang" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">
+              <i class="fas fa-info-circle"></i> Tentang Kami
+            </a>
+            <ul aria-labelledby="dropdownTentang" class="dropdown-menu border-0 shadow" style="min-width: 300px;">
+              <!-- Item 1: Info Aplikasi -->
+              <li class="p-3">
+                <h6 class="text-primary font-weight-bold mb-1"><i class="fas fa-map-marker-alt"></i> GIS Apotek Brebes Tegal</h6>
+                <p class="text-muted small mb-0" style="white-space: normal; line-height: 1.4;">
+                  Berisi informasi lokasi Apotek di Kabupaten Brebes dan Kabupaten Tegal.
+                </p>
               </li>
-              <!-- End Level two -->
+              <li class="dropdown-divider m-0"></li>
+              
+              <!-- Item 2: Tim Kami -->
+              <li class="p-3">
+                <h6 class="text-success font-weight-bold mb-1"><i class="fas fa-users"></i> Tim Kami</h6>
+                <p class="text-muted small mb-0" style="white-space: normal; line-height: 1.4;">
+                  Terdiri dari 3 Mahasiswa Informatika.
+                </p>
+              </li>
+              <li class="dropdown-divider m-0"></li>
+              
+              <!-- Item 3: Feedback -->
+               
+              <li>
+                <a href="#" class="dropdown-item p-3 text-warning font-weight-bold" data-toggle="modal" data-target="#modalFeedback">
+                  <i class="fas fa-comments"></i> Feedback
+                </a>
+              </li>
+            </ul>
+          </li>
+          
+          <!-- DROPDOWN 1: WILAYAH DINAMIS -->
+          <li class="nav-item dropdown">
+            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">
+              <i class="fas fa-map-marked-alt"></i> Semua Wilayah
+            </a>
+            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+              <li>
+                <a href="#" class="dropdown-item filter-wilayah-reset">
+                  <strong>Tampilkan Semua Wilayah</strong>
+                </a>
+              </li>
+              <li class="dropdown-divider"></li>
+              
+              <!-- Looping otomatis dari tabel wilayah -->
+              <?php foreach ($wilayah as $key => $w) { ?>
+                <li>
+                  <a href="#" class="dropdown-item filter-wilayah" data-nama="<?= $w['nama_wilayah'] ?>">
+                    <i class="fas fa-map-marker-alt text-primary"></i> <?= $w['nama_wilayah'] ?>
+                  </a>
+                </li>
+              <?php } ?>
+            </ul>
+          </li>
+
+          <!-- DROPDOWN 2: STATUS APOTEK -->
+          <li class="nav-item dropdown">
+            <a id="dropdownSubMenu2" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">
+              <i class="fas fa-hospital"></i> Semua Status
+            </a>
+            <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
+              <li>
+                <a href="#" class="dropdown-item filter-status-reset">
+                  <strong>Tampilkan Semua Status</strong>
+                </a>
+              </li>
+              <li class="dropdown-divider"></li>
+              <li>
+                <a href="#" class="dropdown-item filter-status" data-status="Swasta">
+                  <i class="fas fa-circle text-info"></i> Apotek Swasta
+                </a>
+              </li>
+              <li>
+                <a href="#" class="dropdown-item filter-status" data-status="Negeri">
+                  <i class="fas fa-circle text-danger"></i> Apotek Negeri
+                </a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -86,10 +124,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
       <!-- Right navbar links -->
       <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-       
-        
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url('Auth/Logout') ?>" >
+          <a class="nav-link" href="<?= base_url('Auth/Logout') ?>">
              <i class="fas fa-sign-in-alt"></i> Login
           </a>
         </li>
@@ -98,96 +134,197 @@ scratch. This page gets rid of all links and provides the needed markup only.
   </nav>
   <!-- /.navbar -->
 
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="<?= base_url('AdminLTE')?>/index3.html" class="brand-link">
-      <img src="<?= base_url('AdminLTE')?>/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
-    </a>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="<?= base_url('AdminLTE')?>/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
-        </div>
-      </div>
-
-     
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-          </li>
-          
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    
-    <!-- /.content-header -->
-
     <!-- Main content -->
     <div class="content">
-      
+      <div class="container-fluid">
         <div class="row">
-          <!-- /.col-md-6 -->
           <?php
             if ($page){
               echo view($page);
              }
            ?>
-          <!-- /.col-md-6 -->
         </div>
-        <!-- /.row -->
-      
+      </div>
     </div>
-    <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
-
-
 
   <!-- Main Footer -->
   <footer class="main-footer">
-    <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-      Anything you want
+      Apotek GIS System
     </div>
-    <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2026 <a href="#">GIS Apotek</a>.</strong> All rights reserved.
   </footer>
 </div>
-<!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-
 <!-- jQuery -->
 <script src="<?= base_url('AdminLTE')?>/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?= base_url('AdminLTE')?>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?= base_url('AdminLTE')?>/dist/js/adminlte.min.js"></script>
+
+<!-- JAVASCRIPT FILTER PETA INTERAKTIF -->
+<script>
+  $(document).ready(function() {
+    
+    // ==========================================
+    // 1. FILTER DROPDOWN WILAYAH (Hanya Poligon Terpilih yang Muncul)
+    // ==========================================
+    $('.filter-wilayah').on('click', function(e) {
+      e.preventDefault();
+      var namaKecamatan = $(this).data('nama');
+      
+      // Tutup popup yang sedang aktif terlebih dahulu
+      map.closePopup();
+
+      map.eachLayer(function(layer) {
+        // Cek apakah layer ini memiliki fungsi setStyle dan memiliki popup bawaan (ciri poligon GeoJSON)
+        if (layer.setStyle && layer.getPopup && layer.getPopup()) {
+          var isiPopup = layer.getPopup().getContent();
+          
+          if (isiPopup.includes(namaKecamatan)) {
+            // JIKA COCOK: Tampilkan poligon kecamatan bersangkutan dengan jelas
+            layer.setStyle({
+              fillOpacity: 0.5, // Munculkan warna isi poligon
+              opacity: 1,       // Jalur garis tepi poligon
+              weight: 2
+            });
+            
+            // Buka balon info dan fokuskan kamera peta
+            layer.openPopup();
+            if (layer.getBounds) {
+              map.fitBounds(layer.getBounds().pad(0.1));
+            }
+          } else {
+            // JIKA TIDAK COCOK: Sembunyikan kecamatan lain (buat transparan total)
+            layer.setStyle({
+              fillOpacity: 0, 
+              opacity: 0,
+              weight: 0
+            });
+          }
+        }
+      });
+    });
+
+    // Reset Filter Wilayah: Memunculkan seluruh poligon kembali
+    $('.filter-wilayah-reset').on('click', function(e) {
+      e.preventDefault();
+      
+      map.eachLayer(function(layer) {
+        if (layer.setStyle && layer.getPopup) {
+          layer.setStyle({
+            fillOpacity: 0.4, // Mengembalikan kepekatan warna normal awal
+            opacity: 1,
+            weight: 1
+          });
+        }
+      });
+
+      if (typeof markerGroup !== 'undefined' && markerGroup.getLayers().length > 0) {
+        map.fitBounds(markerGroup.getBounds().pad(0.2));
+      } else {
+        map.setView([<?= $web['coordinat_kota'] ?>], <?= $web['zoom_view'] ?>);
+      }
+    });
+
+    // ==========================================
+    // 2. FILTER DROPDOWN STATUS
+    // ==========================================
+    $('.filter-status').on('click', function(e) {
+      e.preventDefault();
+      var statusDipilih = $(this).data('status');
+
+      map.closePopup();
+
+      map.eachLayer(function(layer) {
+        if (layer instanceof L.Marker) {
+          if (layer.getPopup && layer.getPopup()) {
+            var isiPopup = layer.getPopup().getContent();
+            
+            if (isiPopup.includes("Status: " + statusDipilih)) {
+              layer.setOpacity(1); 
+            } else {
+              layer.setOpacity(0.1); 
+            }
+          }
+        }
+      });
+    });
+
+    $('.filter-status-reset').on('click', function(e) {
+      e.preventDefault();
+      map.eachLayer(function(layer) {
+        if (layer instanceof L.Marker) {
+          layer.setOpacity(1); 
+        }
+      });
+    });
+
+  });
+</script>
+
 </body>
 </html>
+</script>
 
+<!-- MODAL BOX FORM FEEDBACK (Sekarang aman di luar z-index peta) -->
+<div class="modal fade" id="modalFeedback" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true" style="z-index: 9999;">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-warning">
+        <h5 class="modal-title font-weight-bold" id="feedbackModalLabel">
+          <i class="fas fa-comments"></i> Kirim Feedback Anda
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="<?= base_url('home/kirim_feedback') ?>" method="post">
+        <?= csrf_field(); ?>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Nama Lengkap</label>
+            <input type="text" name="nama" class="form-control" placeholder="Masukkan nama Anda" required>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" class="form-control" placeholder="nama@email.com" required>
+          </div>
+          <div class="form-group">
+            <label>Kontak / No. HP</label>
+            <input type="text" name="kontak" class="form-control" placeholder="Contoh: 081234567xxx" required>
+          </div>
+          <div class="form-group">
+            <label>Pesan / Saran</label>
+            <textarea name="pesan" class="form-control" rows="4" placeholder="Tuliskan kritik atau saran Anda mengenai sistem ini..." required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-warning font-weight-bold">Kirim Feedback</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- SCRIPT JAVASCRIPT NOTIFIKASI FLASHDATA -->
+<?php if (session()->getFlashdata('sukses')) : ?>
+  <script>
+    alert("<?= session()->getFlashdata('sukses'); ?>");
+  </script>
+<?php endif; ?>
+
+<?php if (session()->getFlashdata('error')) : ?>
+  <script>
+    alert("Gagal mengirim feedback:\n<?= strip_tags(session()->getFlashdata('error')); ?>");
+  </script>
+<?php endif; ?>
+
+</body>
+</html>

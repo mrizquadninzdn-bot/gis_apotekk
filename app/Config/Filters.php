@@ -84,13 +84,18 @@ class Filters extends BaseFilters
                 'Home', 'Home/*',
                 'Auth', 'Auth/*',
                 'auth', 'auth/*', // ✔️ Tambahkan ini agar aman dari case-sensitivity URL
-                'css/*', 'js/*', 'img/*', 'assets/*'
+                'css/*', 'js/*', 'img/*', 'assets/*',
+                'home/*',                 // <-- Opsi 1: Izinkan semua fungsi di Home
+                'home/kirim_feedback'
             ]],
         ],
         'after' => [
             // 'honeypot',
             
             'authfilter' => ['except' => [
+                '/',                         // <-- TAMBAHKAN INI
+                'Home', 'Home/*',            // <-- TAMBAHKAN INI
+                'home/*',
                 'Auth', 'Auth/*',
                 'auth', 'auth/*', // ✔️ Tambahkan ini juga
                 'Admin', 'Admin/*',
