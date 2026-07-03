@@ -97,7 +97,7 @@ class Filters extends BaseFilters
                 'admin', 'admin/*',
                 'User', 'User/*',
                 'user', 'user/*',
-                'Sekolah', 'Sekolah/*',
+                'Apotek', 'Apotek/*',
                 'Jenjang', 'Jenjang/*',
                 'Wilayah', 'Wilayah/*',
                 

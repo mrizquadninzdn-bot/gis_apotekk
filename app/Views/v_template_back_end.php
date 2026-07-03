@@ -54,8 +54,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- AdminLTE App -->
 <script src="<?= base_url('AdminLTE')?>/dist/js/adminlte.min.js"></script>
+<style>
+  /* 1. Setel lebar utama sidebar */
+  .main-sidebar, 
+  .main-sidebar::before {
+    width: 290px !important;
+  }
+  .content-wrapper, 
+  .main-footer, 
+  .main-header {
+    margin-left: 290px !important;
+  }
+
+  /* 2. Beri jarak atas-bawah (padding) agar menu tidak dempet */
+  .nav-sidebar .nav-item .nav-link {
+    padding-top: 15px !important;    /* Default bawaan AdminLTE sangat tipis */
+    padding-bottom: 12px !important; /* Diubah ke 12px agar lebih tinggi dan luas */
+    margin-bottom: 6px !important;   /* Menambah jarak antar baris menu */
+  }
+
+  /* 3. Beri jarak sedikit antara Icon dan Teks Menu agar proporsional */
+  .nav-sidebar .nav-link p {
+    margin-left: 8px !important;
+  }
+</style>
+
 </head>
-<body class="hold-transition sidebar-mini">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -150,8 +176,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
-              <a href="<?= base_url('apotek') ?>" class="nav-link">
-                  <i class="nav-icon fas fa-school"></i>
+              <a href="<?= base_url('Apotek') ?>" class="nav-link">
+                  <i class="nav-icon fas fa-hospital"></i>
                   <p>Apotek</p>
               </a>
           </li>

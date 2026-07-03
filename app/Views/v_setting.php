@@ -54,16 +54,40 @@
 </div>
 
 <script>
-var peta1 = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors'
-});
+// 1. Definisikan dulu pilihan layernya (Gunakan alternatif gratis agar tidak putih)
+  var peta1 = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  });
 
-const map = L.map('map', {
-    // Diubah ke coordinat_kota
-    center: [<?= $web['coordinat_kota'] ?>],
-    zoom: <?= $web['zoom_view'] ?>,
-    layers: [peta1]
-});
+  var peta2 = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles &copy; Esri &mdash; Source: Esri'
+  });
+
+  var peta3 = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OpenStreetMap &copy; CARTO'
+  });
+
+  var peta4 = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OpenStreetMap &copy; CARTO'
+  });
+
+  // 2. Inisialisasi Map (Gunakan peta1 atau peta2 sebagai default layer awal)
+  const map = L.map('map', {
+      center: [<?= $web['coordinat_kota'] ?>],
+      zoom: <?= $web['zoom_view'] ?>,
+      layers: [peta1] // ini layer yang otomatis aktif pertama kali
+  });
+
+  // 3. Masukkan daftar layer ke dalam objek baseMaps
+  const baseMaps = {
+      'OpenStreetMap': peta1,
+      'Satelit': peta2,
+      'Gaya Terang': peta3,
+      'Mode Gelap': peta4
+  };
+
+  // 4. JANGAN LUPA BARIS INI: Tombol pemilih layer di pojok kanan atas
+  var layerControl = L.control.layers(baseMaps).addTo(map);
 
 L.marker([<?= $web['coordinat_kota'] ?>]).addTo(map)
     .bindPopup("<?= $web['nama_web'] ?>");

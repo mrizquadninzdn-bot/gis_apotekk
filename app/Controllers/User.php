@@ -13,6 +13,7 @@ class User extends BaseController
     {
         $this->ModelUser = new ModelUser();
     }
+
     public function index()
     {
         $data = [
@@ -121,15 +122,6 @@ class User extends BaseController
                     'valid_email' => 'Format {field} tidak valid !!'
                 ]
             ],
-            'password' => [
-                'label'  => 'Password',
-                'rules'  => 'required',
-                'errors' => [
-                    'required' => '{field} Wajib Diisi !!',
-                    'valid_email' => 'Format {field} tidak valid !!'
-                ]
-                
-            ],
             'foto' => [
                 'label'  => 'Foto User',
                 'rules'  => 'max_size[foto,1024]|mime_in[foto,image/jpg,image/jpeg,image/png]',
@@ -142,13 +134,13 @@ class User extends BaseController
             
             $foto = $this->request->getFile('foto');
             
-            // Logika pengecekan file foto edit yang benar dan bersih
+            // PERBAIKAN: Proteksi pengecekan agar tidak unlink folder kosong/NULL
             if ($foto->isValid() && !$foto->hasMoved()) {
                 $nama_file = $foto->getRandomName();
                 $foto->move('foto', $nama_file);
                 
-                // Menghapus foto lama di folder jika ada (kecuali foto default)
-                if ($user_lama['foto'] != 'default.png' && file_exists('foto/' . $user_lama['foto'])) {
+                // Menghapus foto lama di folder jika ada (kecuali jika kosong atau foto default)
+                if (!empty($user_lama['foto']) && $user_lama['foto'] != 'default.png' && file_exists('foto/' . $user_lama['foto'])) {
                     unlink('foto/' . $user_lama['foto']);
                 }
             } else {
@@ -174,22 +166,19 @@ class User extends BaseController
             return redirect()->to(base_url('User'));
 
         } else {
-            // PERBAIKAN: Ditambahkan '/' sebelum $id_user agar rutenya valid dan tidak 404
             session()->setFlashdata('errors', \Config\Services::validation()->getErrors());
             return redirect()->to(base_url('User/Edit/' . $id_user))->withInput();
         }
     }
+
     public function Delete($id_user)
     {
-        //delete foto
-        $user = $this->ModelUser->DetailData($id_user);
-        if ($user['foto'] <> '') {
-            unlink('foto/' . $user['foto']);
-        }
         // Ambil detail data dulu untuk hapus file foto lama di folder
         $user = $this->ModelUser->DetailData($id_user);
-        if (!empty($user['foto']) && file_exists('Foto/' . $user['foto'])) {
-            unlink('Foto/' . $user['foto']);
+        
+        // PERBAIKAN: Logika hapus foto saat delete dibersihkan dari kode ganda dan proteksi file kosong
+        if (!empty($user['foto']) && $user['foto'] != 'default.png' && file_exists('foto/' . $user['foto'])) {
+            unlink('foto/' . $user['foto']);
         }
 
         $data = [
@@ -198,10 +187,7 @@ class User extends BaseController
         
         $this->ModelUser->DeleteData($data);
         
-        // PERBAIKAN 2: Ubah setFlasdata menjadi setFlashdata (tambah huruf h), 
-        // dan ubah 'delete' menjadi 'pesan' agar otomatis terbaca oleh v_index.php yang tadi kita pasang
         session()->setFlashdata('pesan', 'Data Berhasil Didelete !!');
         return redirect()->to(base_url('User'));
-        
     }
 }
