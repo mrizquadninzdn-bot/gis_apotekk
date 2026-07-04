@@ -62,7 +62,6 @@
               <li class="dropdown-divider m-0"></li>
               
               <!-- Item 3: Feedback -->
-               
               <li>
                 <a href="#" class="dropdown-item p-3 text-warning font-weight-bold" data-toggle="modal" data-target="#modalFeedback">
                   <i class="fas fa-comments"></i> Feedback
@@ -167,68 +166,84 @@
 <!-- AdminLTE App -->
 <script src="<?= base_url('AdminLTE')?>/dist/js/adminlte.min.js"></script>
 
-<!-- JAVASCRIPT FILTER PETA INTERAKTIF -->
+<!-- JAVASCRIPT FILTER PETA INTERAKTIF + RE-DEFINISI CUSTOM MARKER GLOBAL -->
 <script>
+  // ==========================================
+  // DEFINISI GLOBAL CUSTOM MARKER (DI SINI TEMPATNYA)
+  // ==========================================
+  const markerReguler = L.icon({
+      iconUrl: '<?= base_url("marker/Regulerr.png"); ?>', 
+      iconSize: [40, 50], 
+      iconAnchor: [20, 50], 
+      popupAnchor: [0, -45] 
+  });
+
+  const markerKimiaFarma = L.icon({
+      iconUrl: '<?= base_url("marker/Kimia_Farma.png"); ?>', 
+      iconSize: [40, 50], 
+      iconAnchor: [20, 50], 
+      popupAnchor: [0, -45] 
+  });
+
   $(document).ready(function() {
     
     // ==========================================
-    // 1. FILTER DROPDOWN WILAYAH (Hanya Poligon Terpilih yang Muncul)
+    // 1. FILTER DROPDOWN WILAYAH
     // ==========================================
     $('.filter-wilayah').on('click', function(e) {
       e.preventDefault();
       var namaKecamatan = $(this).data('nama');
       
-      // Tutup popup yang sedang aktif terlebih dahulu
-      map.closePopup();
+      if (typeof map !== 'undefined') {
+        map.closePopup();
 
-      map.eachLayer(function(layer) {
-        // Cek apakah layer ini memiliki fungsi setStyle dan memiliki popup bawaan (ciri poligon GeoJSON)
-        if (layer.setStyle && layer.getPopup && layer.getPopup()) {
-          var isiPopup = layer.getPopup().getContent();
-          
-          if (isiPopup.includes(namaKecamatan)) {
-            // JIKA COCOK: Tampilkan poligon kecamatan bersangkutan dengan jelas
-            layer.setStyle({
-              fillOpacity: 0.5, // Munculkan warna isi poligon
-              opacity: 1,       // Jalur garis tepi poligon
-              weight: 2
-            });
+        map.eachLayer(function(layer) {
+          if (layer.setStyle && layer.getPopup && layer.getPopup()) {
+            var isiPopup = layer.getPopup().getContent();
             
-            // Buka balon info dan fokuskan kamera peta
-            layer.openPopup();
-            if (layer.getBounds) {
-              map.fitBounds(layer.getBounds().pad(0.1));
+            if (isiPopup.includes(namaKecamatan)) {
+              layer.setStyle({
+                fillOpacity: 0.5, 
+                opacity: 1,       
+                weight: 2
+              });
+              
+              layer.openPopup();
+              if (layer.getBounds) {
+                map.fitBounds(layer.getBounds().pad(0.1));
+              }
+            } else {
+              layer.setStyle({
+                fillOpacity: 0, 
+                opacity: 0,
+                weight: 0
+              });
             }
-          } else {
-            // JIKA TIDAK COCOK: Sembunyikan kecamatan lain (buat transparan total)
-            layer.setStyle({
-              fillOpacity: 0, 
-              opacity: 0,
-              weight: 0
-            });
           }
-        }
-      });
+        });
+      }
     });
 
-    // Reset Filter Wilayah: Memunculkan seluruh poligon kembali
+    // Reset Filter Wilayah
     $('.filter-wilayah-reset').on('click', function(e) {
       e.preventDefault();
       
-      map.eachLayer(function(layer) {
-        if (layer.setStyle && layer.getPopup) {
-          layer.setStyle({
-            fillOpacity: 0.4, // Mengembalikan kepekatan warna normal awal
-            opacity: 1,
-            weight: 1
-          });
-        }
-      });
+      if (typeof map !== 'undefined') {
+        map.eachLayer(function(layer) {
+          if (layer.setStyle && layer.getPopup) {
+            layer.setStyle({
+              fillOpacity: 0.4, 
+              opacity: 1,
+              weight: 1
+            });
+          }
+        });
 
-      if (typeof markerGroup !== 'undefined' && markerGroup.getLayers().length > 0) {
-        map.fitBounds(markerGroup.getBounds().pad(0.2));
-      } else {
-        map.setView([<?= $web['coordinat_kota'] ?>], <?= $web['zoom_view'] ?>);
+        if (typeof markerGroup !== 'undefined' && markerGroup.getLayers().length > 0) {
+          map.fitBounds(markerGroup.getBounds().pad(0.2));
+        } else if (typeof koordinatKota !== 'undefined' && typeof zoomView !== 'undefined') {
+          map.setView(koordinatKota, zoomView);
+        }
       }
     });
 
@@ -239,40 +254,40 @@
       e.preventDefault();
       var statusDipilih = $(this).data('status');
 
-      map.closePopup();
+      if (typeof map !== 'undefined') {
+        map.closePopup();
 
-      map.eachLayer(function(layer) {
-        if (layer instanceof L.Marker) {
-          if (layer.getPopup && layer.getPopup()) {
-            var isiPopup = layer.getPopup().getContent();
-            
-            if (isiPopup.includes("Status: " + statusDipilih)) {
-              layer.setOpacity(1); 
-            } else {
-              layer.setOpacity(0.1); 
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.Marker) {
+            if (layer.getPopup && layer.getPopup()) {
+              var isiPopup = layer.getPopup().getContent();
+              
+              if (isiPopup.includes("Status: " + statusDipilih)) {
+                layer.setOpacity(1); 
+              } else {
+                layer.setOpacity(0.1); 
+              }
             }
           }
-        }
-      });
+        });
+      }
     });
 
     $('.filter-status-reset').on('click', function(e) {
       e.preventDefault();
-      map.eachLayer(function(layer) {
-        if (layer instanceof L.Marker) {
-          layer.setOpacity(1); 
-        }
-      });
+      if (typeof map !== 'undefined') {
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.Marker) {
+            layer.setOpacity(1); 
+          }
+        });
+      }
     });
 
   });
 </script>
 
-</body>
-</html>
-</script>
-
-<!-- MODAL BOX FORM FEEDBACK (Sekarang aman di luar z-index peta) -->
+<!-- MODAL BOX FORM FEEDBACK -->
 <div class="modal fade" id="modalFeedback" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true" style="z-index: 9999;">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
