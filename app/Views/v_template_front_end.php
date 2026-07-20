@@ -47,7 +47,7 @@
               <li class="p-3">
                 <h6 class="text-primary font-weight-bold mb-1"><i class="fas fa-map-marker-alt"></i> GIS Apotek Brebes Tegal</h6>
                 <p class="text-muted small mb-0" style="white-space: normal; line-height: 1.4;">
-                  Berisi informasi lokasi Apotek di Kabupaten Brebes dan Kabupaten Tegal.
+                  Berisi informasi lokasi Apotek di Wilayah Brebes Selatan.
                 </p>
               </li>
               <li class="dropdown-divider m-0"></li>
