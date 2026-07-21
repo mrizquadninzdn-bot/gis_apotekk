@@ -1,0 +1,292 @@
+/* =========================================================
+   WebGIS Apotek — Tema Terpadu (Navy / Teal)
+   Override di atas Bootstrap 4 / AdminLTE, dibuat agar
+   front-end (publik) dan back-end (admin) senada dengan
+   halaman Login.
+   ========================================================= */
+
+:root{
+  --navy-950:#0b1420;
+  --navy-900:#0f1c2c;
+  --navy-800:#16283b;
+  --navy-700:#203a54;
+  --navy-650:#28496a;
+  --teal-400:#2dd4bf;
+  --teal-300:#5eead4;
+  --coral-500:#ff6b5e;
+  --mist-100:#e7edf3;
+  --mist-300:#a9bbcc;
+  --mist-500:#6d829a;
+}
+
+*{ scrollbar-color: var(--navy-650) var(--navy-900); }
+::-webkit-scrollbar{ width:10px; height:10px; }
+::-webkit-scrollbar-track{ background:var(--navy-900); }
+::-webkit-scrollbar-thumb{ background:var(--navy-650); border-radius:6px; }
+
+html, body{
+  background:var(--navy-950) !important;
+  color:var(--mist-100) !important;
+  font-family:'Inter', sans-serif !important;
+}
+
+h1,h2,h3,h4,h5,h6,
+.brand-text,.card-title,.info-box-text,.nav-link p{
+  font-family:'Space Grotesk', sans-serif !important;
+}
+
+a{ color:var(--teal-300); }
+a:hover{ color:var(--teal-400); }
+
+/* ---------- Layout wrappers ---------- */
+.wrapper,.content-wrapper{ background:var(--navy-950) !important; }
+
+/* ---------- Navbar (top) ---------- */
+.main-header.navbar{
+  background:var(--navy-900) !important;
+  border-bottom:1px solid var(--navy-700) !important;
+}
+.main-header.navbar .nav-link{ color:var(--mist-300) !important; }
+.main-header.navbar .nav-link:hover,
+.main-header.navbar .nav-link:focus{ color:var(--teal-300) !important; }
+.main-header .navbar-brand h5, .main-header h5{ color:var(--mist-100); }
+
+.navbar-white{ background:var(--navy-900) !important; }
+
+/* Dropdown menus (Tentang Kami, Wilayah, Status, user menu, etc.) */
+.dropdown-menu{
+  background:var(--navy-800) !important;
+  border:1px solid var(--navy-700) !important;
+}
+.dropdown-item{ color:var(--mist-300) !important; }
+.dropdown-item:hover,.dropdown-item:focus{
+  background:var(--navy-700) !important;
+  color:var(--teal-300) !important;
+}
+.dropdown-divider{ border-color:var(--navy-700) !important; }
+.dropdown-item h6{ color:var(--teal-300) !important; }
+.dropdown-item p, .dropdown-menu p, .dropdown-menu .text-muted{ color:var(--mist-500) !important; }
+
+/* ---------- Sidebar (admin) ---------- */
+.main-sidebar,
+.main-sidebar::before{
+  background:var(--navy-900) !important;
+  border-right:1px solid var(--navy-700);
+}
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link{ color:var(--mist-300) !important; }
+.brand-link{ border-bottom:1px solid var(--navy-700) !important; }
+.brand-link .brand-text{ color:var(--mist-100) !important; }
+
+.nav-sidebar .nav-link{
+  border-radius:8px;
+  margin:0 8px 6px 8px;
+  width:calc(100% - 16px);
+}
+.nav-sidebar .nav-link:hover{
+  background:var(--navy-800) !important;
+  color:var(--teal-300) !important;
+}
+.nav-sidebar .nav-link.active,
+.nav-sidebar > .nav-item > .nav-link.active{
+  background:rgba(45,212,191,0.14) !important;
+  color:var(--teal-300) !important;
+  box-shadow:inset 3px 0 0 var(--teal-400);
+}
+.nav-sidebar .nav-link .nav-icon{ color:var(--mist-500); }
+.nav-sidebar .nav-link:hover .nav-icon,
+.nav-sidebar .nav-link.active .nav-icon{ color:var(--teal-300); }
+.nav-sidebar .nav-link .badge-danger{
+  background:var(--coral-500) !important;
+  border:none;
+}
+
+.user-panel{ border-bottom:1px solid var(--navy-700) !important; }
+.user-panel .info a{ color:var(--mist-100) !important; }
+
+.form-control-sidebar,
+.sidebar .form-control{
+  background:var(--navy-800) !important;
+  border:1px solid var(--navy-700) !important;
+  color:var(--mist-100) !important;
+}
+.btn-sidebar{ background:var(--navy-800) !important; color:var(--mist-300) !important; border:1px solid var(--navy-700) !important; }
+
+/* ---------- Cards ---------- */
+.card{
+  background:var(--navy-800) !important;
+  border:1px solid var(--navy-700) !important;
+  color:var(--mist-100);
+  border-radius:12px;
+}
+.card.card-outline{ border-top:3px solid var(--teal-400) !important; }
+.card-header{
+  background:var(--navy-800) !important;
+  border-bottom:1px solid var(--navy-700) !important;
+  color:var(--mist-100) !important;
+}
+.card-header.bg-primary{
+  background:var(--teal-400) !important;
+  color:var(--navy-950) !important;
+}
+.card-header.bg-primary .card-title,
+.card-header.bg-primary i{ color:var(--navy-950) !important; }
+.card-footer{ background:var(--navy-800) !important; border-top:1px solid var(--navy-700) !important; }
+.card-title{ color:var(--mist-100); }
+
+/* ---------- Info boxes / small boxes (dashboard stat cards) ---------- */
+.info-box{
+  background:var(--navy-800) !important;
+  color:var(--mist-100) !important;
+  border-radius:12px;
+  box-shadow:none;
+}
+.info-box.bg-light{ background:var(--navy-800) !important; }
+.info-box .info-box-text{ color:var(--mist-500) !important; }
+.info-box .info-box-number{ color:var(--mist-100) !important; }
+.info-box.border-left.border-primary{ border-left-color:var(--teal-400) !important; }
+.info-box.border-left.border-success{ border-left-color:var(--teal-300) !important; }
+.info-box.border-left.border-danger{ border-left-color:var(--coral-500) !important; }
+.info-box .text-primary{ color:var(--teal-400) !important; }
+.info-box .text-success{ color:var(--teal-300) !important; }
+.info-box .text-danger{ color:var(--coral-500) !important; }
+.info-box:hover{ transform:translateY(-2px); transition:transform .15s ease; box-shadow:0 6px 18px rgba(0,0,0,0.35); }
+
+.small-box{ background:var(--navy-800) !important; color:var(--mist-100) !important; border-radius:12px; }
+.small-box .icon{ color:rgba(255,255,255,0.08) !important; }
+.small-box>.small-box-footer{ background:rgba(0,0,0,0.15) !important; color:var(--mist-300) !important; }
+
+/* ---------- Tables / DataTables ---------- */
+.table{ color:var(--mist-100) !important; }
+.table thead th{
+  color:var(--mist-500) !important;
+  border-bottom:1px solid var(--navy-700) !important;
+  background:var(--navy-800);
+}
+.table td, .table th{ border-color:var(--navy-700) !important; }
+.table-striped tbody tr:nth-of-type(odd){ background:rgba(255,255,255,0.02) !important; }
+.table-hover tbody tr:hover{ background:rgba(45,212,191,0.06) !important; color:var(--mist-100); }
+.table .text-dark{ color:var(--mist-100) !important; }
+.table .text-muted{ color:var(--mist-500) !important; }
+.table .text-primary{ color:var(--teal-300) !important; }
+
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing,
+.dataTables_wrapper .dataTables_paginate{ color:var(--mist-300) !important; }
+.dataTables_wrapper .form-control{
+  background:var(--navy-900) !important;
+  border:1px solid var(--navy-700) !important;
+  color:var(--mist-100) !important;
+}
+.page-item .page-link{
+  background:var(--navy-800) !important;
+  border:1px solid var(--navy-700) !important;
+  color:var(--mist-300) !important;
+}
+.page-item.active .page-link{
+  background:var(--teal-400) !important;
+  border-color:var(--teal-400) !important;
+  color:var(--navy-950) !important;
+}
+.img-thumbnail{ background:var(--navy-800); border-color:var(--navy-700); }
+
+/* ---------- Badges ---------- */
+.badge-success{ background:var(--teal-400) !important; color:var(--navy-950) !important; }
+.badge-danger{ background:var(--coral-500) !important; color:#fff !important; }
+.badge-warning{ background:#f5c451 !important; color:var(--navy-950) !important; }
+.badge-info{ background:var(--navy-650) !important; color:var(--mist-100) !important; }
+
+/* ---------- Buttons ---------- */
+.btn-primary{
+  background:var(--teal-400) !important;
+  border-color:var(--teal-400) !important;
+  color:var(--navy-950) !important;
+  font-weight:600;
+}
+.btn-primary:hover{ background:var(--teal-300) !important; border-color:var(--teal-300) !important; }
+.btn-success{ background:var(--teal-400) !important; border-color:var(--teal-400) !important; color:var(--navy-950) !important; }
+.btn-danger{ background:var(--coral-500) !important; border-color:var(--coral-500) !important; }
+.btn-warning{ background:#f5c451 !important; border-color:#f5c451 !important; color:var(--navy-950) !important; }
+.btn-secondary{ background:var(--navy-700) !important; border-color:var(--navy-700) !important; color:var(--mist-100) !important; }
+.btn-outline-secondary{ border-color:var(--navy-700) !important; color:var(--mist-300) !important; }
+
+/* ---------- Forms ---------- */
+.form-control, select.form-control, textarea.form-control{
+  background:var(--navy-900) !important;
+  border:1px solid var(--navy-700) !important;
+  color:var(--mist-100) !important;
+}
+.form-control::placeholder{ color:var(--mist-500) !important; }
+.form-control:focus{
+  border-color:var(--teal-400) !important;
+  box-shadow:0 0 0 3px rgba(45,212,191,0.15) !important;
+  background:var(--navy-900) !important;
+  color:var(--mist-100) !important;
+}
+label{ color:var(--mist-300); }
+.select2-container--bootstrap4 .select2-selection{
+  background:var(--navy-900) !important;
+  border:1px solid var(--navy-700) !important;
+  color:var(--mist-100) !important;
+}
+.select2-dropdown{ background:var(--navy-800) !important; border-color:var(--navy-700) !important; }
+.select2-results__option{ color:var(--mist-300) !important; }
+.select2-container--bootstrap4 .select2-selection--single .select2-selection__rendered{ color:var(--mist-100) !important; }
+.select2-search__field{ background:var(--navy-900) !important; color:var(--mist-100) !important; }
+.select2-results__option--highlighted{ background:var(--teal-400) !important; color:var(--navy-950) !important; }
+
+/* ---------- Modals ---------- */
+.modal-content{
+  background:var(--navy-800) !important;
+  color:var(--mist-100) !important;
+  border:1px solid var(--navy-700) !important;
+}
+.modal-header{ border-bottom:1px solid var(--navy-700) !important; }
+.modal-header.bg-warning{ background:#f5c451 !important; color:var(--navy-950) !important; }
+.modal-footer{ border-top:1px solid var(--navy-700) !important; }
+.close{ color:var(--mist-100); text-shadow:none; }
+
+/* ---------- Footer ---------- */
+.main-footer{
+  background:var(--navy-900) !important;
+  color:var(--mist-500) !important;
+  border-top:1px solid var(--navy-700) !important;
+}
+.main-footer a{ color:var(--teal-300); }
+
+/* ---------- Breadcrumb / content header ---------- */
+.content-header h1{ color:var(--mist-100); }
+.breadcrumb{ background:transparent !important; }
+.breadcrumb-item a{ color:var(--mist-300); }
+.breadcrumb-item.active{ color:var(--teal-300); }
+
+/* ---------- Leaflet map polish ---------- */
+.leaflet-control-layers,
+.leaflet-bar a{
+  background:var(--navy-800) !important;
+  color:var(--mist-100) !important;
+  border-color:var(--navy-700) !important;
+}
+.leaflet-bar a:hover{ background:var(--navy-700) !important; color:var(--teal-300) !important; }
+.custom-popup .leaflet-popup-content-wrapper{
+  background:var(--navy-800) !important;
+  color:var(--mist-100) !important;
+  border:1px solid var(--navy-700);
+}
+.custom-popup .leaflet-popup-tip{ background:var(--navy-800) !important; }
+
+/* ---------- Misc utility ---------- */
+.text-muted{ color:var(--mist-500) !important; }
+.bg-light{ background:var(--navy-800) !important; }
+.border{ border-color:var(--navy-700) !important; }
+hr{ border-color:var(--navy-700); }
+
+/* Login-style accent for section labels on public pages */
+.section-eyebrow{
+  font-family:'JetBrains Mono', monospace;
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--teal-300);
+}

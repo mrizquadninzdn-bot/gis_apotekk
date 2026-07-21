@@ -1,4 +1,4 @@
-<div id="map" style="width:100%; height:600px; border-bottom: 3px solid #343a40;"></div>
+<div id="map" style="width:100%; height:600px; border-bottom: 3px solid #16283b;"></div>
 
 <!-- FontAwesome untuk Icon jika diperlukan -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -8,15 +8,22 @@
 <style>
     /* Styling agar tampilan popup custom & rapi seperti web profesional */
     .custom-popup .leaflet-popup-content-wrapper {
-        background: #ffffff;
-        color: #333;
-        border-radius: 8px;
+        background: #16283b;
+        color: #e7edf3;
+        border: 1px solid #203a54;
+        border-radius: 10px;
         padding: 5px;
-        box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.45);
     }
     .custom-popup .leaflet-popup-content {
         margin: 8px 12px;
         line-height: 1.4;
+    }
+    .custom-popup .leaflet-popup-tip {
+        background: #16283b;
+    }
+    .custom-popup a.leaflet-popup-close-button {
+        color: #a9bbcc;
     }
 </style>
 
@@ -99,8 +106,8 @@
             var marker = L.marker([<?= $val['latitude'] ?>, <?= $val['longitude'] ?>], { icon: penandaIcon })
             .bindPopup(`
                 <div style="min-width: 220px;" class="custom-popup">
-                    <h5 style="margin: 0 0 5px 0; color: #007bff; font-weight:bold;"><?= $val['nama_apotek'] ?></h5>
-                    <span style="background-color: <?= ($val['status'] == 'Swasta') ? '#17a2b8' : '#dc3545' ?>; color: white; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; display: inline-block; margin-bottom: 8px;">
+                    <h5 style="margin: 0 0 5px 0; color: #5eead4; font-weight:bold; font-family:'Space Grotesk',sans-serif;"><?= $val['nama_apotek'] ?></h5>
+                    <span style="background-color: <?= ($val['status'] == 'Swasta') ? '#2dd4bf' : '#ff6b5e' ?>; color: #0b1420; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; display: inline-block; margin-bottom: 8px;">
                         Status: <?= $val['status'] ?>
                     </span>
                     <?php if (!empty($val['foto'])) { ?>
@@ -108,7 +115,7 @@
                             <img src="<?= base_url('foto/' . $val['foto']) ?>" width="100%" style="border-radius: 6px; max-height:120px; object-fit:cover;" alt="Foto Apotek">
                         </div>
                     <?php } ?>
-                    <p style="margin: 5px 0 0 0; font-size: 12px; color: #555;"><i class="fas fa-map-marker-alt"></i> <?= $val['alamat'] ?></p>
+                    <p style="margin: 5px 0 0 0; font-size: 12px; color: #a9bbcc;"><i class="fas fa-map-marker-alt"></i> <?= $val['alamat'] ?></p>
                 </div>
             `);
             

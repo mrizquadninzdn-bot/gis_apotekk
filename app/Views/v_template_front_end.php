@@ -5,12 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>GIS Apotek | <?= $judul ?></title>
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Google Fonts: senada dengan halaman Login -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="<?= base_url('AdminLTE')?>/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?= base_url('AdminLTE')?>/dist/css/adminlte.min.css">
+  <!-- Tema Terpadu WebGIS Apotek (Navy/Teal, senada halaman Login) -->
+  <link rel="stylesheet" href="<?= base_url('AdminLTE')?>/dist/css/theme-webgis.css">
 
   <!-- Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
@@ -22,10 +26,10 @@
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
     <div class="container">
-      <a href="<?= base_url() ?>" class="navbar-brand">
-        <img src="<?= base_url('AdminLTE')?>/dist/img/LogoGisApotek.jpeg" class="me-2" height="50px" style="width: auto; object-fit: contain;">
+      <a href="<?= base_url() ?>" class="navbar-brand d-flex align-items-center">
+        <img src="<?= base_url('AdminLTE')?>/dist/img/LogoGisApotek.jpeg" class="mr-2" height="42px" style="width: auto; object-fit: contain; border-radius:8px;">
+        <span style="font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:17px; color:var(--mist-100);">WebGIS <span style="color:var(--teal-300);">Apotek</span></span>
       </a>
-      <h5><b>GIS APOTEK </b></h5>
       <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -47,7 +51,7 @@
               <li class="p-3">
                 <h6 class="text-primary font-weight-bold mb-1"><i class="fas fa-map-marker-alt"></i> GIS Apotek Brebes Tegal</h6>
                 <p class="text-muted small mb-0" style="white-space: normal; line-height: 1.4;">
-                  Berisi informasi lokasi Apotek di Wilayah Brebes Selatan.
+                  Berisi informasi lokasi Apotek di Kabupaten Brebes dan Kabupaten Tegal.
                 </p>
               </li>
               <li class="dropdown-divider m-0"></li>
@@ -124,7 +128,7 @@
       <!-- Right navbar links -->
       <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url('Auth/Logout') ?>">
+          <a class="nav-link" href="<?= base_url('Auth/Logout') ?>" style="background:var(--teal-400); color:var(--navy-950)!important; border-radius:8px; padding:6px 16px!important; font-weight:600;">
              <i class="fas fa-sign-in-alt"></i> Login
           </a>
         </li>
@@ -152,9 +156,9 @@
   <!-- Main Footer -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-inline">
-      Apotek GIS System
+      WebGIS Apotek System
     </div>
-    <strong>Copyright &copy; 2026 <a href="#">GIS Apotek</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2026 <a href="<?= base_url() ?>">WebGIS Apotek</a>.</strong> Seluruh hak cipta dilindungi.
   </footer>
 </div>
 
