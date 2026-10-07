@@ -81,6 +81,7 @@ class Filters extends BaseFilters
             
             'authfilter' => ['except' => [
                 '/',
+                'api', 'api/*', // API publik
                 'Home', 'Home/*',
                 'Auth', 'Auth/*',
                 'auth', 'auth/*', // ✔️ Tambahkan ini agar aman dari case-sensitivity URL
@@ -94,6 +95,7 @@ class Filters extends BaseFilters
             
             'authfilter' => ['except' => [
                 '/',                         // <-- TAMBAHKAN INI
+                'api', 'api/*',              // API publik
                 'Home', 'Home/*',            // <-- TAMBAHKAN INI
                 'home/*',
                 'Admin', 'Admin/*',
