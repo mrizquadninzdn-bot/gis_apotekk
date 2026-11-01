@@ -2,6 +2,27 @@
 
 Aplikasi WebGIS untuk melihat dan mengelola lokasi apotek. Panduan ini ditujukan untuk menjalankan aplikasi secara lokal di laptop Windows menggunakan Laragon.
 
+## Latar belakang dan tujuan
+
+Informasi lokasi apotek akan lebih mudah dipahami jika ditampilkan bersama peta wilayah. WebGIS Apotek membantu pengguna menemukan lokasi apotek dan melihat sebarannya, serta membantu administrator mengelola data apotek dan wilayah secara terpusat.
+
+## Fitur aplikasi
+
+- Peta publik untuk melihat lokasi apotek dan batas wilayah.
+- Peta interaktif dengan pilihan layer, termasuk citra satelit.
+- Informasi detail apotek, termasuk alamat dan lokasi pada peta.
+- Dashboard admin berisi ringkasan data dan grafik jumlah apotek per jenjang.
+- Pengelolaan data apotek, wilayah, pengguna, dan pengaturan peta.
+- Pengaturan jenjang apotek yang digunakan pada pengelompokan data.
+- Formulir feedback pada halaman utama.
+- Endpoint API untuk data apotek: `/api/apotek`, `/api/apotek/geojson`, dan `/api/apotek/{id}`.
+
+## Screenshot aplikasi
+
+Berikut tampilan halaman Wilayah saat aplikasi dijalankan. Halaman ini menampilkan daftar wilayah beserta peta batas wilayahnya.
+
+![Screenshot halaman Wilayah WebGIS Apotek](docs/screenshots/wilayah.png)
+
 ## Persyaratan
 
 - Windows 10/11
@@ -68,6 +89,8 @@ php spark serve
 ```
 
 Buka halaman utama di [http://localhost:8080](http://localhost:8080). Halaman login tersedia di [http://localhost:8080/Auth/Login](http://localhost:8080/Auth/Login).
+
+CodeIgniter menjalankan aplikasi PHP secara langsung, jadi tidak ada proses kompilasi khusus. Untuk menyiapkan dan menjalankannya dari awal, urutannya adalah `composer install`, mengimpor serta mengatur database, kemudian menjalankan `php spark serve`.
 
 ## Akun login demo
 
