@@ -37,11 +37,20 @@ class ModelApotek extends Model
         ->update($data);
     }
 
-    public function DeleteData($data)
+    public function FotoData($id_apotek)
     {
-        $this->db->table('tbl_apotek')
-        ->where('id_apotek', $data['id_apotek'])
-        ->delete($data);
+        return $this->db->table('tbl_apotek')
+            ->select('foto')
+            ->where('id_apotek', $id_apotek)
+            ->get()
+            ->getRowArray();
+    }
+
+    public function DeleteData($id_apotek)
+    {
+        return $this->db->table('tbl_apotek')
+            ->where('id_apotek', $id_apotek)
+            ->delete();
     }
 
     //Provinsi

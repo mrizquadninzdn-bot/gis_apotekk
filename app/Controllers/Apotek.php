@@ -278,23 +278,21 @@ public function UpdateData($id_apotek)
     // PERBAIKAN 1: Nama fungsi diubah dari Delete menjadi DeleteData agar sinkron dengan Routes
     public function DeleteData($id_apotek)
     {
-        //delete foto
-        $apotek = $this->ModelApotek->DetailData($id_apotek);
-        if ($apotek['foto'] <> '') {
-            unlink('foto/' . $apotek['foto']);
-        }
-        // Ambil detail data dulu untuk hapus file foto lama di folder
-        $apotek = $this->ModelApotek->DetailData($id_apotek);
-        if (!empty($apotek['foto']) && file_exists('Foto/' . $apotek['foto'])) {
-            unlink('Foto/' . $apotek['foto']);
+        $apotek = $this->ModelApotek->FotoData($id_apotek);
+
+        if (!$this->ModelApotek->DeleteData($id_apotek)) {
+            session()->setFlashdata('errors', 'Data apotek gagal dihapus.');
+            return redirect()->to(base_url('Apotek'));
         }
 
-        $data = [
-            'id_apotek' => $id_apotek,
-        ];
-        
-        $this->ModelApotek->DeleteData($data);
-        
+        $nama_foto = basename((string) (isset($apotek['foto']) ? $apotek['foto'] : ''));
+        if ($nama_foto !== '') {
+            $path_foto = FCPATH . 'Foto' . DIRECTORY_SEPARATOR . $nama_foto;
+            if (is_file($path_foto) && !unlink($path_foto)) {
+                log_message('error', 'Gagal menghapus foto apotek: ' . $path_foto);
+            }
+        }
+
         // PERBAIKAN 2: Ubah setFlasdata menjadi setFlashdata (tambah huruf h), 
         // dan ubah 'delete' menjadi 'pesan' agar otomatis terbaca oleh v_index.php yang tadi kita pasang
         session()->setFlashdata('pesan', 'Data Apotek Berhasil Dihapus !!');
