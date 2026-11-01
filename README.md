@@ -19,9 +19,41 @@ Informasi lokasi apotek akan lebih mudah dipahami jika ditampilkan bersama peta 
 
 ## Screenshot aplikasi
 
-Berikut tampilan halaman Wilayah saat aplikasi dijalankan. Halaman ini menampilkan daftar wilayah beserta peta batas wilayahnya.
+Berikut tangkapan layar aplikasi yang sedang dijalankan:
 
-![Screenshot halaman Wilayah WebGIS Apotek](docs/screenshots/wilayah.png)
+### Halaman publik
+
+![Halaman publik WebGIS Apotek](docs/screenshots/public.png)
+
+### Login
+
+![Halaman login WebGIS Apotek](docs/screenshots/login.png)
+
+### Dashboard
+
+![Dashboard admin WebGIS Apotek](docs/screenshots/dashboard.png)
+
+### Wilayah
+
+![Halaman pengelolaan wilayah dan peta](docs/screenshots/wilayah.png)
+
+### Jenjang
+
+![Halaman pengelolaan jenjang apotek](docs/screenshots/jenjang.png)
+
+### Apotek
+
+![Halaman pengelolaan data apotek](docs/screenshots/apotek.png)
+
+### Setting
+
+![Halaman pengaturan aplikasi dan peta](docs/screenshots/setting.png)
+
+### User
+
+![Halaman pengelolaan pengguna](docs/screenshots/user.png)
+
+Nilai hash password pada screenshot User disamarkan untuk mencegah penyebaran data autentikasi.
 
 ## Persyaratan
 
