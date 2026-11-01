@@ -1,61 +1,85 @@
-# CodeIgniter 4 Framework
+# WebGIS Apotek
 
-## What is CodeIgniter?
+Aplikasi WebGIS untuk melihat dan mengelola lokasi apotek. Panduan ini ditujukan untuk menjalankan aplikasi secara lokal di laptop Windows menggunakan Laragon.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## Persyaratan
 
-This repository holds the distributable version of the framework.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+- Windows 10/11
+- [Laragon](https://laragon.org/download/) dengan PHP 8.2 atau lebih baru dan MySQL 8.0 atau lebih baru
+- [Composer](https://getcomposer.org/download/)
+- Koneksi internet untuk memuat peta dan beberapa aset eksternal
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+Pastikan ekstensi PHP `intl`, `mbstring`, dan `mysqli` aktif. Ekstensi `mysqli` diperlukan untuk koneksi ke MySQL.
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+## 1. Siapkan project
 
-## Important Change with index.php
+Salin atau ekstrak folder project ke laptop, misalnya `C:\laragon\www\gis_apotekk`. Buka Terminal/PowerShell di folder tersebut, lalu jalankan:
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+```powershell
+composer install
+```
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+Perintah ini memasang dependency PHP yang dibutuhkan CodeIgniter.
 
-**Please** read the user guide for a better explanation of how CI4 works!
+## 2. Buat dan impor database
 
-## Repository Management
+1. Buka Laragon dan jalankan **MySQL**.
+2. Buka phpMyAdmin dari menu Laragon.
+3. Buat database bernama `db_gis_apotek_ci4` dengan collation `utf8mb4_unicode_ci`.
+4. Pilih database tersebut, lalu impor file `db-gis-apotek-ci4 (1).sql` yang ada di folder project.
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+File SQL menyediakan struktur tabel dan pengaturan awal peta. Setelah impor, jalankan perintah berikut satu kali melalui tab **SQL** di phpMyAdmin. Kolom `nama_user` dan `foto` ditambahkan karena digunakan oleh aplikasi tetapi belum tersedia di dump database.
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+```sql
+ALTER TABLE tbl_user
+    ADD COLUMN nama_user VARCHAR(100) NULL AFTER username,
+    ADD COLUMN foto VARCHAR(255) NULL AFTER password;
 
-## Contributing
+INSERT INTO tbl_user (nama_user, email, password, foto)
+VALUES ('Dosen', 'zaydan08@gmail.com', SHA1('1234'), NULL);
+```
 
-We welcome contributions from the community.
+Perintah tersebut membuat akun login yang tercantum di bawah. Jalankan hanya setelah impor database, dan jangan dijalankan berulang kali karena email akan terduplikasi.
 
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/CONTRIBUTING.md) section in the development repository.
+## 3. Atur koneksi aplikasi
 
-## Server Requirements
+Buka file `.env` di folder project. Atur atau tambahkan nilai berikut. Jika password MySQL Laragon Anda berbeda, ganti bagian `database.default.password`.
 
-PHP version 8.2 or higher is required, with the following extensions installed:
+```ini
+CI_ENVIRONMENT = development
+app.baseURL = 'http://localhost:8080/'
+database.default.hostname = localhost
+database.default.database = db_gis_apotek_ci4
+database.default.username = root
+database.default.password =
+database.default.DBDriver = MySQLi
+database.default.DBPrefix =
+database.default.port = 3306
+```
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+Jangan letakkan file `.env` atau kredensial database di repositori publik.
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - The end of life date for PHP 8.1 was December 31, 2025.
-> - If you are still using below PHP 8.2, you should upgrade immediately.
-> - The end of life date for PHP 8.2 will be December 31, 2026.
+## 4. Jalankan aplikasi
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+Pastikan MySQL masih berjalan. Dari Terminal/PowerShell yang berada di folder project, jalankan:
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+```powershell
+php spark serve
+```
+
+Buka halaman utama di [http://localhost:8080](http://localhost:8080). Halaman login tersedia di [http://localhost:8080/Auth/Login](http://localhost:8080/Auth/Login).
+
+## Akun login demo
+
+| Kolom | Nilai |
+|---|---|
+| Email | `zaydan08@gmail.com` |
+| Password | `1234` |
+
+Password tersebut hanya untuk demo/presentasi. Ganti setelah demo dan jangan gunakan di layanan publik.
+
+## Catatan
+
+- Database bawaan belum berisi data lokasi apotek/wilayah; tambahkan data melalui aplikasi jika diperlukan.
+- Peta menggunakan layanan tile eksternal, sehingga tampilan peta memerlukan koneksi internet.
+- Jika koneksi database gagal, pastikan MySQL aktif dan nama database, username, password, driver `MySQLi`, serta port di `.env` sesuai pengaturan Laragon.
