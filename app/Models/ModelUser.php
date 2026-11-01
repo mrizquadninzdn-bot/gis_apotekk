@@ -8,36 +8,35 @@ class ModelUser extends Model
 {
     public function AllData()
     {
-        return $this->db->table('tbl_User')
+        return $this->db->table('tbl_user')
             ->get()
             ->getResultArray();
     }
-    
+
     public function InsertData($data)
     {
-        $this->db->table('tbl_User')->insert($data);
+        $this->db->table('tbl_user')->insert($data);
     }
 
-    public function DetailData($id_User)
+    public function DetailData($id_user)
     {
-        return $this->db->table('tbl_User')
-        ->where('id_User', $id_User)
-        ->get()->getRowArray();
+        return $this->db->table('tbl_user')
+            ->where('id_user', $id_user)
+            ->get()
+            ->getRowArray();
     }
-    
-    // PERBAIKAN: Gunakan langsung variabel $id_user di dalam where()
+
     public function UpdateData($id_user, $data)
     {
-        return $this->db->table('tbl_User')
-            ->where('id_user', $id_user) // Menggunakan variabel $id_user langsung, bukan $data['id_User']
+        return $this->db->table('tbl_user')
+            ->where('id_user', $id_user)
             ->update($data);
     }
-    
-    // PERBAIKAN UNTUK HAPUS: Gunakan langsung variabel $id_user
+
     public function DeleteData($id_user)
     {
-        return $this->db->table('tbl_User')
-            ->where('id_user', $id_user) // Menggunakan variabel $id_user langsung
+        return $this->db->table('tbl_user')
+            ->where('id_user', $id_user)
             ->delete();
     }
 }

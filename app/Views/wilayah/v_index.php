@@ -76,12 +76,12 @@
     const map = L.map('map', {
 	    center: [<?= $web['coordinat_kota'] ?>],
 	    zoom: <?= $web['zoom_view'] ?>,
-	    layers: [peta3]
+	    layers: [peta2]
 });
 
     const baseMaps = {
 	    'OpenStreetMap': peta1,
-	    'satelite': peta2,
+	    'Satelit': peta2,
         'streets': peta3,
         'night': peta4
     };

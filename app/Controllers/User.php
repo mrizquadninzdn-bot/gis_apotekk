@@ -181,11 +181,7 @@ class User extends BaseController
             unlink('foto/' . $user['foto']);
         }
 
-        $data = [
-            'id_user' => $id_user,
-        ];
-        
-        $this->ModelUser->DeleteData($data);
+        $this->ModelUser->DeleteData($id_user);
         
         session()->setFlashdata('pesan', 'Data Berhasil Didelete !!');
         return redirect()->to(base_url('User'));
