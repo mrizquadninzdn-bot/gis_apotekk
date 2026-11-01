@@ -8,7 +8,14 @@
               <div class="card-body">
               <?php 
               session();
-              $validation = \Config\Services::validation();
+              $errors = session()->getFlashdata('errors');
+              if (! is_array($errors)) {
+                  $errors = [];
+              }
+              $warnaInput = old('warna');
+              if (! is_string($warnaInput) || ! preg_match('/^#[0-9a-fA-F]{6}$/', $warnaInput)) {
+                  $warnaInput = '#3388ff';
+              }
               ?>
               <?php echo form_open('Wilayah/InsertData') ?>
 
@@ -17,15 +24,16 @@
                     <div class="form-group">
                 <label>Nama Wilayah</label>
                 <input name="nama_wilayah" value="<?= old('nama_wilayah') ?>" class="form-control">
-                <p class="text-danger"><?= $validation->hasError('nama_wilayah') ? $validation->getError('nama_wilayah') : '' ?></p>
+                <p class="text-danger"><?= isset($errors['nama_wilayah']) ? esc($errors['nama_wilayah']) : '' ?></p>
               </div>
                     </div>
 
                     <div class="col-sm-6">
                     <div class="form-group">
                 <label>Warna Wilayah</label>
-                <input name="warna" value="<?= old('warna') ?>" class="form-control my-colorpicker1">
-                <p class="text-danger"><?= $validation->hasError('warna') ? $validation->getError('warna') : '' ?></p>
+                <input type="color" name="warna" value="<?= esc($warnaInput) ?>" class="form-control" style="height: 38px; padding: 4px; width: 90px;" title="Pilih warna wilayah">
+                <small class="text-muted">Klik kotak warna untuk memilih.</small>
+                <p class="text-danger"><?= isset($errors['warna']) ? esc($errors['warna']) : '' ?></p>
             </div>                        
                     </div>
                 </div>
@@ -33,7 +41,7 @@
                 <div class="form-group">
                 <label>GeoJSON</label>
                 <textarea name="geojson" class="form-control" rows="15"><?= old('geojson') ?></textarea>
-                <p class="text-danger"><?= $validation->hasError('geojson') ? $validation->getError('geojson') : '' ?></p>
+                <p class="text-danger"><?= isset($errors['geojson']) ? esc($errors['geojson']) : '' ?></p>
             </div>        
             
             
@@ -45,11 +53,3 @@
         </div>
     </div>
 </div>
-
-
-<script>
-    //Colorpicker
-    $('.my-colorpicker1').colorpicker()
-    //color picker with addon
-    $('.my-colorpicker2').colorpicker()
-</script>

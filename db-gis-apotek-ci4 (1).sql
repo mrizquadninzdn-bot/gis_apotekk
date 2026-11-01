@@ -92,6 +92,7 @@ CREATE TABLE `tbl_user` (
 CREATE TABLE `tbl_wilayah` (
   `id_wilayah` int NOT NULL,
   `nama_wilayah` varchar(50) DEFAULT NULL,
+  `warna` varchar(7) DEFAULT NULL,
   `geojson` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 

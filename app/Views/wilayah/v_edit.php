@@ -9,6 +9,24 @@
               <?php 
               session();
               $validation = \Config\Services::validation();
+              $warnaInput = is_string($wilayah['warna']) ? $wilayah['warna'] : '';
+              $warnaLama = [
+                  'biru' => '#0000ff',
+                  'merah' => '#ff0000',
+                  'hijau' => '#008000',
+                  'kuning' => '#ffff00',
+                  'hitam' => '#000000',
+                  'putih' => '#ffffff',
+                  'ungu' => '#800080',
+                  'jingga' => '#ffa500',
+                  'oranye' => '#ffa500',
+              ];
+              if (isset($warnaLama[strtolower($warnaInput)])) {
+                  $warnaInput = $warnaLama[strtolower($warnaInput)];
+              }
+              if (! is_string($warnaInput) || ! preg_match('/^#[0-9a-fA-F]{6}$/', $warnaInput)) {
+                  $warnaInput = '#3388ff';
+              }
               ?>
               <?php echo form_open('Wilayah/UpdateData/'. $wilayah['id_wilayah']) ?>
 
@@ -24,7 +42,8 @@
                     <div class="col-sm-6">
                     <div class="form-group">
                 <label>Warna Wilayah</label>
-                <input name="warna" value="<?= $wilayah['warna'] ?>" class="form-control my-colorpicker1">
+                <input type="color" name="warna" value="<?= esc($warnaInput) ?>" class="form-control" style="height: 38px; padding: 4px; width: 90px;" title="Pilih warna wilayah">
+                <small class="text-muted">Klik kotak warna untuk memilih.</small>
                 <p class="text-danger"><?= $validation->hasError('warna') ? $validation->getError('warna') : '' ?></p>
             </div>                        
                     </div>
@@ -45,11 +64,3 @@
         </div>
     </div>
 </div>
-
-
-<script>
-    //Colorpicker
-    $('.my-colorpicker1').colorpicker()
-    //color picker with addon
-    $('.my-colorpicker2').colorpicker()
-</script>
